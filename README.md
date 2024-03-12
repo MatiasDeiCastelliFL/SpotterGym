@@ -1,4 +1,4 @@
-# s13-07-n-node-react
+# Spotter Gym
 APP PARA GIMNASIOS - SPOTTER
 
 El sistema esta diseñado para gimnasios y  lo pueden utilizar tanto el dueño del gimnasio, los profesores y los clientes.	
