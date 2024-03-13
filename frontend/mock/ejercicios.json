@@ -1,0 +1,37 @@
+{
+    "exercises": [
+        {
+            "name": "Remo horizontal con mancuerna",
+            "step": 1,
+            "subtitle": "¡Empecemos!",
+            "instructions": {
+                "steps": [
+                    "Coge un banco de ejercicio y colócalo en posición totalmente horizontal.",
+                    "Coge la mancuerna con uno de los dos brazos y coloca la rodilla contraria encima del banco.",
+                    "Después pon la espalda totalmente alineada con el banco, horizontal, mientras apoyas la mano que no sujeta la mancuerna en el banco.",
+                    "Cuando ya estés en esta posición inicial alza la mancuerna de manera que flexiones el codo manteniéndolo pegado al cuerpo, hasta que quede en noventa grados.",
+                    "Después volveremos a descender la mancuerna de la misma manera y lo repetiremos 8 veces con cada brazo en 4 series.",
+                    "Recuerda que mientras realizas todo el proceso debes mantener la espalda recta y el abdomen apretado."
+                ]
+            },
+            "image": "/public/ejercicioRemo.png",
+            "repetitions": "Repeticiones 3x10"
+        },
+        {
+            "name": "Ejercicio con mancuernas y banco",
+            "step": 2,
+            "subtitle": "¡Ya lo tienes!",
+            "instructions": {
+                "steps": [
+                    "Coge dos mancuernas del mismo peso cada una y elige un banco para sentarte.",
+                    "Coloca bien la planta de los pies en el suelo e inclina la espalda, pero desde la zona de la cadera, de manera que quede en diagonal con el suelo pero recta, no doblada por la zona de la lumbar.",
+                    "Las mancuernas estarán agarradas por tus manos y partimos desde la posición inicial con los brazos totalmente estirados.",
+                    "Como en el anterior ejercicio, tienes que levantar las mancuernas mediante una flexión de los codos, pegados al cuerpo, hasta alcanzar los noventa grados de flexión.",
+                    "Después vuelve a descender los brazos de manera controlada y repite 10 veces en 4 series"
+                ]
+            },
+            "image": "",
+            "repetitions": "Repeticiones: 3x10"
+        }
+    ]
+}

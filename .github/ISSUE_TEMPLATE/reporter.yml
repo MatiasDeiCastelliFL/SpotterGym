@@ -1,0 +1,161 @@
+name: Reporte de Bug
+description: template para crear un reporte de bug en issues de github
+title: "[Pantalla] TItulo descriptivo"
+labels: 
+  - Bug
+assignees:
+  - octocat
+body:
+
+  - type: input
+    id: id_number
+    attributes:
+      label: 🏷️ ID
+      placeholder: ingrese id del caso de prueba
+    validations:
+      required: true
+
+  # - type: input
+  #   id: descripcion
+  #   attributes:
+  #     label: ✔️ Descripcion
+  #     placeholder: Comentar brevemente de que se trata el error y que se logre entender cuál es la falla
+  #   validations:
+  #     required: false      
+
+  - type: input
+    id: fecha_reporte
+    attributes:
+      label: ✔️ Fecha de Reporte
+      description: Fecha en que se realiza el reporte del bug
+      placeholder: "DD-MM-YY"
+    validations:
+      required: true
+      
+  - type: dropdown
+    id: version
+    attributes:
+      label: ✔️ Tipo de Defecto
+      options:
+        - Funcional
+        - Visual
+        - Crash
+        - Performance
+        - Contenido
+        - Accesibilidad
+    validations:
+      required: true
+
+  - type: dropdown
+    id: prioridad
+    attributes:
+      label: ✔️ Prioridad
+      description: prioridad
+      options:
+        - Baja
+        - Media
+        - Alta
+      default: 0
+    validations:
+      required: true
+
+  - type: dropdown
+    id: Dispositivo
+    attributes:
+      label: ✔️ Dispositivo
+      description: dispositivo usado para testear
+      options:
+        - PC - Windows 
+        - PC - Ubuntu
+        - Mobile - Andorid
+        - Mobile - IOS
+      default: 0
+    validations:
+      required: true
+
+  - type: dropdown
+    id: Navegador
+    attributes:
+      label: ✔️ Navegador
+      description: navegador usado para testear
+      options:
+        - Firefox
+        - Chrome
+        - Safari
+        - Microsoft Edge
+      default: 0
+    validations:
+      required: true
+
+  - type: dropdown
+    id: asignado-a
+    attributes:
+      label: ✔️ Asignado a
+      options:
+        - Frontend
+        - Backend
+        - Diseño
+        - Testing
+      default: 0
+    validations:
+      required: true      
+
+  - type: textarea
+    id: pasos-de-reproduccion
+    attributes:
+      label: ✔️ Pasos de Reproduccion
+      description: si se requieren pre-requisitos agregarlos antes de los pasos de reproduccion 
+      placeholder: |
+        Pre-requisitos: Que es lo que necesito tener previamente configurado para poder ejecutar los pasos.
+        1. Ingresar URL:
+        2. Segundo paso:
+        3. [...]
+    validations:
+      required: true        
+
+  - type: textarea
+    id: resultado_obtenido
+    attributes:
+      label: ✖️ Resultado Obtenido
+      description: Describa exactamente el resultado obtenido
+    validations:
+      required: true    
+
+
+  - type: textarea
+    id: resultado_esperado
+    attributes:
+      label: ✔️ Resultado Esperado
+      description: Describa exactamente el resuldato esperado
+    validations:
+      required: true      
+
+  - type: textarea
+    id: capturas_de_pantalla
+    attributes:
+      label: 📸 Imagenes y/o Videos
+      description: Adjuntar archivos de tipo imagen y/o video
+    validations:
+      required: true
+
+  - type: input
+    id: tester_qa
+    attributes:
+      label: ⚙️ Tester QA
+      placeholder: nombre del tester
+    validations:
+      required: false
+
+  # - type: input
+  #   id: url
+  #   attributes:
+  #     label: 🔗 Test Plan
+  #     description: Ingresar url 
+  #     placeholder: email@example.com
+  #   validations:
+  #     required: false
+
+  # - type: markdown
+  #   attributes:
+  #     value: |
+  #       [Test Plan - No country](https://www.notion.so/maxi-barbosa-proyects/Test-Plan-1-4035ba912dc64a959f4d4d8f5d1d1d2e)

@@ -1,0 +1,681 @@
+[
+  {
+    "description": "    Verificar que todos los enlaces en la pagina funcionen correctamente para asegurar de una navegacion adecuada\n    * Protocolo de navegacion\n    * Status de conexion\n    * Redireccion de los enlaces",
+    "elements": [
+      {
+        "description": "",
+        "id": "nav-|-ts-01-|-verificacion-de-propiedades-y-status-en-los-links/enlaces-de-redireccion-interna;verificar-status-y-propiedades-de-todos-los-enlaces-por-pagina",
+        "keyword": "Scenario",
+        "line": 23,
+        "name": "Verificar status y propiedades de todos los enlaces por pagina",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 3601431899
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 8,
+            "name": "ingreso en la url 'https://s13-07-n-node-react-git-front-end-merge-spotterapp.vercel.app/acceso'",
+            "match": {
+              "location": "src\\features\\steps_definitions\\links_steps.ts:26"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 3389296800
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 9,
+            "name": "ingreso usuario 'isaacurdaneta@gmail.com' y contraseña '04161652340'",
+            "match": {
+              "location": "src\\features\\steps_definitions\\links_steps.ts:32"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2235731999
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 13,
+            "name": "que se realiza clic en 'Home'",
+            "match": {
+              "location": "src\\features\\steps_definitions\\links_steps.ts:41"
+            },
+            "result": {
+              "status": "failed",
+              "duration": 5016830700,
+              "error_message": "Error: function timed out, ensure the promise resolves within 5000 milliseconds\n    at Timeout.<anonymous> (Z:\\Repositorios GitHub\\No Country - Proyectos\\SpotterGym\\testing\\node_modules\\@cucumber\\cucumber\\src\\time.ts:52:14)\n    at listOnTimeout (node:internal/timers:573:17)\n    at processTimers (node:internal/timers:514:7)"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 14,
+            "name": "accedo en la pagina \"inicio/cliente\"",
+            "match": {
+              "location": "src\\features\\steps_definitions\\links_steps.ts:46"
+            },
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 15,
+            "name": "se realiza clic en todos los enlaces buscados",
+            "match": {
+              "location": "src\\features\\steps_definitions\\links_steps.ts:52"
+            },
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 16,
+            "name": "se muestra el total de enlaces encontrados",
+            "match": {
+              "location": "src\\features\\steps_definitions\\links_steps.ts:56"
+            },
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 17,
+            "name": "deben redirigir corretamente a la url de destino",
+            "match": {
+              "location": "src\\features\\steps_definitions\\links_steps.ts:66"
+            },
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 18,
+            "name": "deben devolver un codigo de estado HTTP 200 OK",
+            "match": {
+              "location": "src\\features\\steps_definitions\\links_steps.ts:71"
+            },
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 19,
+            "name": "deben ser accesible y cargar correctamente",
+            "match": {
+              "location": "src\\features\\steps_definitions\\links_steps.ts:76"
+            },
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 20,
+            "name": "los enlaces debe utilizar el protocolo correcto (HTTP o HTTPS)",
+            "match": {
+              "location": "src\\features\\steps_definitions\\links_steps.ts:81"
+            },
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 2101148499
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@Nav",
+            "line": 11
+          },
+          {
+            "name": "@TS-01",
+            "line": 11
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "nav-|-ts-01-|-verificacion-de-propiedades-y-status-en-los-links/enlaces-de-redireccion-interna;verificar-status-y-propiedades-de-todos-los-enlaces-por-pagina",
+        "keyword": "Scenario",
+        "line": 24,
+        "name": "Verificar status y propiedades de todos los enlaces por pagina",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 2817919899
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 8,
+            "name": "ingreso en la url 'https://s13-07-n-node-react-git-front-end-merge-spotterapp.vercel.app/acceso'",
+            "match": {
+              "location": "src\\features\\steps_definitions\\links_steps.ts:26"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2697489799
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 9,
+            "name": "ingreso usuario 'isaacurdaneta@gmail.com' y contraseña '04161652340'",
+            "match": {
+              "location": "src\\features\\steps_definitions\\links_steps.ts:32"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2186630399
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 13,
+            "name": "que se realiza clic en 'Wallet'",
+            "match": {
+              "location": "src\\features\\steps_definitions\\links_steps.ts:41"
+            },
+            "result": {
+              "status": "failed",
+              "duration": 5014932699,
+              "error_message": "Error: function timed out, ensure the promise resolves within 5000 milliseconds\n    at Timeout.<anonymous> (Z:\\Repositorios GitHub\\No Country - Proyectos\\SpotterGym\\testing\\node_modules\\@cucumber\\cucumber\\src\\time.ts:52:14)\n    at listOnTimeout (node:internal/timers:573:17)\n    at processTimers (node:internal/timers:514:7)"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 14,
+            "name": "accedo en la pagina \"entrenamiento\"",
+            "match": {
+              "location": "src\\features\\steps_definitions\\links_steps.ts:46"
+            },
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 15,
+            "name": "se realiza clic en todos los enlaces buscados",
+            "match": {
+              "location": "src\\features\\steps_definitions\\links_steps.ts:52"
+            },
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 16,
+            "name": "se muestra el total de enlaces encontrados",
+            "match": {
+              "location": "src\\features\\steps_definitions\\links_steps.ts:56"
+            },
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 17,
+            "name": "deben redirigir corretamente a la url de destino",
+            "match": {
+              "location": "src\\features\\steps_definitions\\links_steps.ts:66"
+            },
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 18,
+            "name": "deben devolver un codigo de estado HTTP 200 OK",
+            "match": {
+              "location": "src\\features\\steps_definitions\\links_steps.ts:71"
+            },
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 19,
+            "name": "deben ser accesible y cargar correctamente",
+            "match": {
+              "location": "src\\features\\steps_definitions\\links_steps.ts:76"
+            },
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 20,
+            "name": "los enlaces debe utilizar el protocolo correcto (HTTP o HTTPS)",
+            "match": {
+              "location": "src\\features\\steps_definitions\\links_steps.ts:81"
+            },
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 2106997500
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@Nav",
+            "line": 11
+          },
+          {
+            "name": "@TS-01",
+            "line": 11
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "nav-|-ts-01-|-verificacion-de-propiedades-y-status-en-los-links/enlaces-de-redireccion-interna;verificar-status-y-propiedades-de-todos-los-enlaces-por-pagina",
+        "keyword": "Scenario",
+        "line": 25,
+        "name": "Verificar status y propiedades de todos los enlaces por pagina",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 2205773699
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 8,
+            "name": "ingreso en la url 'https://s13-07-n-node-react-git-front-end-merge-spotterapp.vercel.app/acceso'",
+            "match": {
+              "location": "src\\features\\steps_definitions\\links_steps.ts:26"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2726520699
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 9,
+            "name": "ingreso usuario 'isaacurdaneta@gmail.com' y contraseña '04161652340'",
+            "match": {
+              "location": "src\\features\\steps_definitions\\links_steps.ts:32"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2196340199
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 13,
+            "name": "que se realiza clic en 'Settings'",
+            "match": {
+              "location": "src\\features\\steps_definitions\\links_steps.ts:41"
+            },
+            "result": {
+              "status": "failed",
+              "duration": 5016007200,
+              "error_message": "Error: function timed out, ensure the promise resolves within 5000 milliseconds\n    at Timeout.<anonymous> (Z:\\Repositorios GitHub\\No Country - Proyectos\\SpotterGym\\testing\\node_modules\\@cucumber\\cucumber\\src\\time.ts:52:14)\n    at listOnTimeout (node:internal/timers:573:17)\n    at processTimers (node:internal/timers:514:7)"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 14,
+            "name": "accedo en la pagina \"estadisticas\"",
+            "match": {
+              "location": "src\\features\\steps_definitions\\links_steps.ts:46"
+            },
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 15,
+            "name": "se realiza clic en todos los enlaces buscados",
+            "match": {
+              "location": "src\\features\\steps_definitions\\links_steps.ts:52"
+            },
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 16,
+            "name": "se muestra el total de enlaces encontrados",
+            "match": {
+              "location": "src\\features\\steps_definitions\\links_steps.ts:56"
+            },
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 17,
+            "name": "deben redirigir corretamente a la url de destino",
+            "match": {
+              "location": "src\\features\\steps_definitions\\links_steps.ts:66"
+            },
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 18,
+            "name": "deben devolver un codigo de estado HTTP 200 OK",
+            "match": {
+              "location": "src\\features\\steps_definitions\\links_steps.ts:71"
+            },
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 19,
+            "name": "deben ser accesible y cargar correctamente",
+            "match": {
+              "location": "src\\features\\steps_definitions\\links_steps.ts:76"
+            },
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 20,
+            "name": "los enlaces debe utilizar el protocolo correcto (HTTP o HTTPS)",
+            "match": {
+              "location": "src\\features\\steps_definitions\\links_steps.ts:81"
+            },
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 2105324499
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@Nav",
+            "line": 11
+          },
+          {
+            "name": "@TS-01",
+            "line": 11
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "nav-|-ts-01-|-verificacion-de-propiedades-y-status-en-los-links/enlaces-de-redireccion-interna;verificar-status-y-propiedades-de-todos-los-enlaces-por-pagina",
+        "keyword": "Scenario",
+        "line": 26,
+        "name": "Verificar status y propiedades de todos los enlaces por pagina",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 2186391899
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 8,
+            "name": "ingreso en la url 'https://s13-07-n-node-react-git-front-end-merge-spotterapp.vercel.app/acceso'",
+            "match": {
+              "location": "src\\features\\steps_definitions\\links_steps.ts:26"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2798838000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 9,
+            "name": "ingreso usuario 'isaacurdaneta@gmail.com' y contraseña '04161652340'",
+            "match": {
+              "location": "src\\features\\steps_definitions\\links_steps.ts:32"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2202066599
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 13,
+            "name": "que se realiza clic en 'Profile'",
+            "match": {
+              "location": "src\\features\\steps_definitions\\links_steps.ts:41"
+            },
+            "result": {
+              "status": "failed",
+              "duration": 5015571400,
+              "error_message": "Error: function timed out, ensure the promise resolves within 5000 milliseconds\n    at Timeout.<anonymous> (Z:\\Repositorios GitHub\\No Country - Proyectos\\SpotterGym\\testing\\node_modules\\@cucumber\\cucumber\\src\\time.ts:52:14)\n    at listOnTimeout (node:internal/timers:573:17)\n    at processTimers (node:internal/timers:514:7)"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 14,
+            "name": "accedo en la pagina \"micuenta\"",
+            "match": {
+              "location": "src\\features\\steps_definitions\\links_steps.ts:46"
+            },
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 15,
+            "name": "se realiza clic en todos los enlaces buscados",
+            "match": {
+              "location": "src\\features\\steps_definitions\\links_steps.ts:52"
+            },
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 16,
+            "name": "se muestra el total de enlaces encontrados",
+            "match": {
+              "location": "src\\features\\steps_definitions\\links_steps.ts:56"
+            },
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 17,
+            "name": "deben redirigir corretamente a la url de destino",
+            "match": {
+              "location": "src\\features\\steps_definitions\\links_steps.ts:66"
+            },
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 18,
+            "name": "deben devolver un codigo de estado HTTP 200 OK",
+            "match": {
+              "location": "src\\features\\steps_definitions\\links_steps.ts:71"
+            },
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 19,
+            "name": "deben ser accesible y cargar correctamente",
+            "match": {
+              "location": "src\\features\\steps_definitions\\links_steps.ts:76"
+            },
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 20,
+            "name": "los enlaces debe utilizar el protocolo correcto (HTTP o HTTPS)",
+            "match": {
+              "location": "src\\features\\steps_definitions\\links_steps.ts:81"
+            },
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 2112125699
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@Nav",
+            "line": 11
+          },
+          {
+            "name": "@TS-01",
+            "line": 11
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "nav-|-ts-01-|-verificacion-de-propiedades-y-status-en-los-links/enlaces-de-redireccion-interna",
+    "line": 1,
+    "keyword": "Feature",
+    "name": "Nav | TS 01 | Verificacion de propiedades y status en los links/enlaces de redireccion interna",
+    "tags": [],
+    "uri": "src\\features\\test_cases\\Nav_TS-01_links.feature"
+  }
+]
