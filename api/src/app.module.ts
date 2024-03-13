@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-
+import { MongooseModule } from '@nestjs/mongoose';
+import { UserModule } from './user/user.module';
+import * as dotenv from 'dotenv';
+dotenv.config();
+const feacture = [UserModule];
 @Module({
-  imports: [],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [MongooseModule.forRoot(process.env.CONEXION_DB), ...feacture],
 })
 export class AppModule {}
