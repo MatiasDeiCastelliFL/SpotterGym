@@ -5,18 +5,22 @@ import { MongooseModule } from '@nestjs/mongoose';
 
 import { Instructor } from './instructor.entity';
 import { InstructorSchema } from './instructor.schema';
+import { INSTRUCTOR_REPOSITORY } from './instructor.repository';
+import { MongoInstructorRepository } from './infra/database/mongodb.repository';
 
 @Module({
   imports: [
-    MongooseModule.forFeature({
-      name: Instructor.name,
-      schema: InstructorSchema,
-    }),
+    MongooseModule.forFeature([
+      {
+        name: Instructor.name,
+        schema: InstructorSchema,
+      },
+    ]),
   ],
   controllers: [InstructorsController],
   providers: [
     InstructorsService,
-    { provide: InstructorRepository, useClass: MongooInstructorRepository },
+    { provide: INSTRUCTOR_REPOSITORY, useClass: MongoInstructorRepository },
   ],
 })
 export class InstructorsModule {}
