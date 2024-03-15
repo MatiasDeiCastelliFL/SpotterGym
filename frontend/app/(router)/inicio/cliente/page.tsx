@@ -28,7 +28,7 @@ export default async function  InicioCliente(){
             <Suspense fallback={<div>Loading...</div>}>
               <div className="h-52 overflow-hidden overflow-x-auto">
                 <div className='flex gap-2 w-[480px] '>
-                    {data.data.map((profesor: any, key: React.Key | null | undefined)=>{
+                    {data?.data?.map((profesor: any, key: React.Key | null | undefined)=>{
                       //console.log(profesor)
                       const {firstName,lastName,  active, rating, image, id} =  profesor;
                       return(

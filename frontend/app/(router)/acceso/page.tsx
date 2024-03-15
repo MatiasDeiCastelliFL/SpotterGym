@@ -161,7 +161,10 @@ export default function LoginForm() {
           ) : (
             <>
               <div className='flex justify-center mb-40'>
-                <Image src={spotterLogo} alt='logo' />
+                <Link href={"/"}>
+                  <Image src={spotterLogo} alt='logo' />
+                </Link>
+                
               </div>
               <h2 className='mb-6'>Inicia Sesión</h2>
               <label htmlFor='email' className='mb-2'>
