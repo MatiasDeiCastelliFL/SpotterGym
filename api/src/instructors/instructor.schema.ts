@@ -18,5 +18,5 @@ class Instructor {
 }
 
 export type InstructorDocument = Instructor & Document;
-export const InstructorModel = SchemaFactory.createForClass(Instructor);
+export const InstructorSchema = SchemaFactory.createForClass(Instructor);
 export type InstructorModel = Model<InstructorDocument>;

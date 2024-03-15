@@ -4,7 +4,7 @@ import { InstructorsService } from './instructors.service';
 import { MongooseModule } from '@nestjs/mongoose';
 
 import { Instructor } from './instructor.entity';
-import { InstructorSchema } from './instructor.schema'
+import { InstructorSchema } from './instructor.schema';
 
 @Module({
   imports: [
