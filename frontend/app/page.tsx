@@ -15,9 +15,7 @@ import logoInferior from "../public/logoInferior.png"
 export default function Page() {
   const router = useRouter()
   const {rolUser} = useGlobalStore<any>((state)=>state);
-  //console.log(rolUser)
-
-  const redirectToApp =()=>{
+  const redirectToApp =()=> {
     if(rolUser === "cliente"){
       router.push("/inicio/cliente")
     }
