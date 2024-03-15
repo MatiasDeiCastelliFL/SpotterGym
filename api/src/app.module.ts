@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { UserModule } from './user/user.module';
+import { RolModule } from './rol/rol.module';
 import * as dotenv from 'dotenv';
 dotenv.config();
-const feacture = [UserModule];
+const feacture = [RolModule];
 @Module({
   imports: [MongooseModule.forRoot(process.env.CONEXION_DB), ...feacture],
 })
