@@ -145,7 +145,10 @@ export default function RegisterForm() {
           ) : (
             <>
               <div className='flex justify-center mb-5'>
-                <Image src={spotterLogo} alt='logo' />
+                <Link href={"/"}>
+                  <Image src={spotterLogo} alt='logo' />
+                </Link>
+                
               </div>
 
               <h2 className='mb-6'>Registrar Usuario</h2>
