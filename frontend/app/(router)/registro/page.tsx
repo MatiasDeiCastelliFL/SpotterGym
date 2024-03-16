@@ -49,6 +49,9 @@ export default function RegisterForm() {
         .max(12,"la contraseña debe ser igual o menor a 12 caracteres")
         .required('La contraseña es requerida')
         .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/, "La contraseña debe contener al menos 8 caracteres, una letra mayúscula, una letra minúscula, un número y un símbolo"),
+        confirmPass: Yup.string()
+        .required('La confirmación de la contraseña es requerida')
+        .oneOf([Yup.ref('pass')], 'Las contraseñas deben coincidir'),
         role_id: Yup.string(),
         description: Yup.string().required("la descripción es requerida"),
     });
@@ -60,6 +63,7 @@ export default function RegisterForm() {
     initialValues:{
       email: "",
       pass: "",
+      confirmPass:"",
       firstName:"",
       lastName:"",
       phone:"",
@@ -68,6 +72,7 @@ export default function RegisterForm() {
     },
     validationSchema,
     onSubmit: async  (values, {resetForm}) => {
+      
       
       setLoading(true)
       const response = await registro(values);
@@ -260,6 +265,25 @@ export default function RegisterForm() {
                         />
                         {formik.touched.pass && formik.errors.pass ? (
                         <div className='my-1 text-primaryDefault'>{String(formik.errors.pass)}</div>
+                        ) : null}
+                        <div className='absolute left-2 top-1/3 transform -translate-y-1/2'>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5 text-primaryDefault">
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" />
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div className='relative mt-2'>
+                        <input
+                            type='password'
+                            id='confirmPass'
+                            placeholder='confirmar Contraseña'
+                            className='text-primaryDefault bg-gray-800 mb-2 p-2 border-none rounded-lg w-full pl-10 border border-gray-300'
+                            onChange={formik.handleChange}
+                            value={formik.values.confirmPass}
+                        />
+                        {formik.touched.pass && formik.errors.confirmPass ? (
+                        <div className='my-1 text-primaryDefault'>{String(formik.errors.confirmPass)}</div>
                         ) : null}
                         <div className='absolute left-2 top-1/3 transform -translate-y-1/2'>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5 text-primaryDefault">
