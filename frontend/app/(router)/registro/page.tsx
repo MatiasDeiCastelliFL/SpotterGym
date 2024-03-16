@@ -28,7 +28,7 @@ export default function RegisterForm() {
         }, 1000);
         const traerRol = async () =>{
           let response = await filtrarRol();
-          //console.log(response);
+          console.log(response);
           setRolArray([...response.rol]);
         }
         traerRol();
@@ -72,10 +72,11 @@ export default function RegisterForm() {
     },
     validationSchema,
     onSubmit: async  (values, {resetForm}) => {
-      
-      
+      const {email, pass, firstName, lastName, phone, role_id, description} = values;
+      const objectValues = {email, pass, firstName, lastName, phone, role_id, description}
+      console.log(objectValues)
       setLoading(true)
-      const response = await registro(values);
+      const response = await registro(objectValues);
       console.log(response);
       if(response.status === 201){
         Swal.fire({
@@ -117,7 +118,7 @@ export default function RegisterForm() {
       router.push("/inicio/duennio");
     }
 
-    if(rolUser === "profesor/a"){
+    if(rolUser === "profesor"){
       router.push("/inicio/profesor")
     }
 
@@ -294,28 +295,27 @@ export default function RegisterForm() {
                     
                     {
                       roleArray.length > 0 && (
-                      <div className='my-4' >
-                        <label htmlFor="role_id" className=" flex items-center  mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5 text-primaryDefault">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" />
-                          </svg>
-                          <span className='ml-3'>Tipo de usuario</span>
-                        </label>
-                        <select value={formik.values.role_id} onChange={formik.handleChange} name='role_id' id="role_id" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                          {
-                            roleArray.map((role: any, key:any) =>{
-                              if(role.name === "secretario/a"){
-                                return 
-                              }
-                              return (
-                                <option key={key} value={role._id}>{role.name}</option>
-                              )
-                            })
-                          }
-                        </select>
-                    </div>
+                        <div className='my-4' >
+                          <label htmlFor="role_id" className=" flex items-center  mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5 text-primaryDefault">
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" />
+                            </svg>
+                            <span className='ml-3'>Tipo de usuario</span>
+                          </label>
+                          <select value={formik.values.role_id} onChange={formik.handleChange} name='role_id' id="role_id" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <option selected>Escoja su rol</option>
+                            {
+                              roleArray.map((role: any, key:any) =>{
+                                
+                                return (
+                                  <option key={key} value={role._id}>{role.name}</option>
+                                )
+                              })
+                            }
+                          </select>
+                        </div>
 
-                      )
+                        )
                     }
                     
                     
