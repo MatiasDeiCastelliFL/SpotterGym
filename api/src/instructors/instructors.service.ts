@@ -34,15 +34,12 @@ export class InstructorsService {
         console.log('>> CREATE SERVICE [ no persisted ]');
       }
 
-      const message = 'Not implemented';
-      throw new Error(message);
-      /*
       const result = await this.instructors.create({
         ..._body,
         image_url: '',
       });
       console.info('>> CREATE SERVICE [ result:', result, ']');
-      */
+      return result;
     } catch (error: any) {
       console.error('>> CREATE SERVICE [ error: ', error, ']');
       throw new Object(error);
