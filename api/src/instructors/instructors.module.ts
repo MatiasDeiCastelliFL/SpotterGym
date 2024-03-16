@@ -17,10 +17,10 @@ import { MongoInstructorRepository } from './infra/database/mongodb.repository';
       },
     ]),
   ],
-  controllers: [InstructorsController],
   providers: [
     InstructorsService,
     { provide: INSTRUCTOR_REPOSITORY, useClass: MongoInstructorRepository },
   ],
+  controllers: [InstructorsController],
 })
 export class InstructorsModule {}
