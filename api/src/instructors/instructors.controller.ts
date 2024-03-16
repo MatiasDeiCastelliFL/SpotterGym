@@ -41,10 +41,9 @@ export class InstructorsController {
   ) {
     try {
       await this.instructors.create(body, file);
-      console.log('>> CONTROLLER');
     } catch (error) {
       console.error('>> CONTROLLER', error);
-      throw new BadRequestException(error);
+      throw new BadRequestException(error.message);
     }
   }
 }
