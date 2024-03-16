@@ -28,7 +28,7 @@ export default function RegisterForm() {
         }, 1000);
         const traerRol = async () =>{
           let response = await filtrarRol();
-          console.log(response);
+          //console.log(response);
           setRolArray([...response.rol]);
         }
         traerRol();
