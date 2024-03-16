@@ -19,6 +19,6 @@ export class MongoInstructorRepository implements InstructorRepository {
     return instructors;
   }
   async create(instructor: CreateInstructorDTO) {
-    this.instructorsModel.create(instructor);
+    return await this.instructorsModel.create(instructor);
   }
 }
