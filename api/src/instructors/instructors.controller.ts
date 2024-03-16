@@ -11,9 +11,32 @@ import { InstructorPostBody } from './dto/create';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { InstructorsService } from './instructors.service';
 
+import * as dotenv from 'dotenv';
+dotenv.config();
+const HOST = `${process.env.PROTOCOL}://${process.env.DOMAIN}:${process.env.PORT}/instructors`;
+
 @Controller('instructors')
 export class InstructorsController {
   constructor(private instructors: InstructorsService) {}
+
+  parse_(instructor: any) {
+    const { firstName, lastName, phone, email, description, image_url } =
+      instructor;
+    return {
+      data: {
+        firstName,
+        lastName,
+        phone,
+        email,
+        description,
+      },
+      links: {
+        self: `${HOST}/${instructor._id}`,
+        image_url,
+        reviews: `${HOST}/${instructor._id}/reviews`,
+      },
+    };
+  }
   @Get()
   async index(): Promise<object> {
     const response = {
@@ -22,9 +45,9 @@ export class InstructorsController {
     };
     try {
       const instructors = await this.instructors.findAll();
-      if (0 < instructors.length) {
+      if (instructors.length) {
         response.message = 'instructors found';
-        response.data = instructors;
+        response.data = instructors.map((e) => this.parse_(e));
       }
     } catch (error) {
       console.error(error);
@@ -40,9 +63,11 @@ export class InstructorsController {
     @UploadedFile() file: Express.Multer.File,
   ) {
     try {
-      await this.instructors.create(body, file);
+      const instructor = await this.instructors.create(body, file);
+      return this.parse_(instructor);
     } catch (error) {
       console.error('>> CONTROLLER', error);
+
       throw new BadRequestException(error.message);
     }
   }
