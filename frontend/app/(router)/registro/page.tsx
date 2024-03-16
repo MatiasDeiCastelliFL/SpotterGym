@@ -26,11 +26,12 @@ export default function RegisterForm() {
         const timer = setTimeout(() => {
         setShowForm(true);
         }, 1000);
-        const traerRol = async ()=>{
+        const traerRol = async () =>{
           let response = await filtrarRol();
+          //console.log(response);
           setRolArray([...response.rol]);
         }
-        traerRol()
+        traerRol();
         return () => clearTimeout(timer);
     }, []);
 
@@ -49,7 +50,7 @@ export default function RegisterForm() {
         .required('La contraseña es requerida')
         .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/, "La contraseña debe contener al menos 8 caracteres, una letra mayúscula, una letra minúscula, un número y un símbolo"),
         role_id: Yup.string(),
-        description: Yup.string().required(),
+        description: Yup.string().required("la descripción es requerida"),
     });
 
     
@@ -153,7 +154,7 @@ export default function RegisterForm() {
 
               <h2 className='mb-6'>Registrar Usuario</h2>
                 
-                    <div className='flex items-center relative mt-2'>
+                    <div className='relative mt-2'>
                         <input
                             type='text'
                             id='firstName'
@@ -201,8 +202,8 @@ export default function RegisterForm() {
                             onChange={formik.handleChange}
                             value={formik.values.phone}
                         />
-                        {formik.touched.lastName && formik.errors.lastName ? (
-                        <div className='my-1 text-primaryDefault'>{String(formik.errors.lastName)}</div>
+                        {formik.touched.phone && formik.errors.phone ? (
+                        <div className='my-1 text-primaryDefault'>{String(formik.errors.phone)}</div>
                         ) : null}
                         <div className='absolute left-2 top-1/3 transform -translate-y-1/2'>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5 text-primaryDefault">
