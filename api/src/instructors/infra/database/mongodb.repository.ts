@@ -10,10 +10,15 @@ export class MongoInstructorRepository implements InstructorRepository {
   constructor(
     @InjectModel(Instructor.name) private instructorsModel: InstructorModel,
   ) {}
-  findAll(): Promise<Instructor[]> {
-    return this.instructorsModel.find();
+  async findBy(criteria: object = {}): Promise<Instructor[]> {
+    const result = await this.instructorsModel.find(criteria).exec();
+    return result;
   }
-  create(instructor: CreateInstructorDTO) {
+  async findAll(): Promise<Instructor[]> {
+    const instructors = await this.instructorsModel.find().exec();
+    return instructors;
+  }
+  async create(instructor: CreateInstructorDTO) {
     this.instructorsModel.create(instructor);
   }
 }

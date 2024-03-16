@@ -15,6 +15,8 @@ class Instructor {
   email: string;
   @Prop()
   password: string;
+  @Prop()
+  image_url: string;
 }
 
 export type InstructorDocument = Instructor & Document;

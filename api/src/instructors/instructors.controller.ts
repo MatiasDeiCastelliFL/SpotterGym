@@ -15,14 +15,17 @@ import { InstructorsService } from './instructors.service';
 export class InstructorsController {
   constructor(private instructors: InstructorsService) {}
   @Get()
-  index(): object {
+  async index(): Promise<object> {
     const response = {
       message: 'not found instructors',
       data: null,
     };
     try {
-      response.data = this.instructors.findAll();
-      if (0 === response.data.length) response.message = 'instructors found';
+      const instructors = await this.instructors.findAll();
+      if (0 < instructors.length) {
+        response.message = 'instructors found';
+        response.data = instructors;
+      }
     } catch (error) {
       console.error(error);
       throw new BadRequestException(error);
@@ -32,15 +35,15 @@ export class InstructorsController {
 
   @Post()
   @UseInterceptors(FileInterceptor('photo'))
-  create(
+  async create(
     @Body() body: InstructorPostBody,
     @UploadedFile() file: Express.Multer.File,
   ) {
-    console.log('>> creating an instructor', body, file);
-
     try {
-      this.instructors.create(body);
+      await this.instructors.create(body, file);
+      console.log('>> CONTROLLER');
     } catch (error) {
+      console.error('>> CONTROLLER', error);
       throw new BadRequestException(error);
     }
   }

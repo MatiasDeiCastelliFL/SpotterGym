@@ -5,4 +5,5 @@ export class Instructor {
   description: string;
   email: string;
   password: string;
+  image_url: string;
 }

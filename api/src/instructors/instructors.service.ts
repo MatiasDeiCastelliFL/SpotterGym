@@ -11,24 +11,28 @@ export class InstructorsService {
     @Inject(INSTRUCTOR_REPOSITORY) private instructors: InstructorRepository,
   ) {}
   async findAll() {
-    console.log('>> LISTING SERVICE');
     try {
-      return await this.instructors.findAll();
+      const instructors = await this.instructors.findAll();
+      return instructors;
     } catch (error) {
+      console.error('>> LISTING SERVICE', error);
       throw new Error(error);
     }
   }
 
-  async create(_body: InstructorPostBody) {
-    console.log('>> CREATE SERVICE', _body);
-    try {
-      await this.instructors.create({
+  async create(_body: InstructorPostBody, file: Express.Multer.File) {
+    file;
+    const { email } = _body;
+    const persisted = await this.instructors.findBy({ email });
+    if (email === persisted[0].email)
+      throw new Object({ message: 'email registrado' });
+    else {
+      const result = await this.instructors.create({
         ..._body,
         image_url: '',
       });
-    } catch (error) {
-      console.error(error);
-      throw new Error(error);
+
+      console.info('>> CREATE SERVICE', result);
     }
   }
 }
