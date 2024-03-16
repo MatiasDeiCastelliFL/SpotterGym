@@ -1,8 +1,8 @@
 import { Given, When, Then, Before, After } from '@cucumber/cucumber';
 import { chromium, firefox, Page, webkit} from 'playwright';
-import { Elements } from '../pages/objectModel';
-import { Links } from '../pages/linksProperties'; 
-import { ScreenSize } from '../../utils/screenSIze';
+import { Elements } from '../../../features/pages/objectModel-playwright';
+import { Links } from './linksProperties'; 
+import { ScreenSize } from '../../../utils/screenSIze';
 
 let browser;
 let screenSIze: ScreenSize

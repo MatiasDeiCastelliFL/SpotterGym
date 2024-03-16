@@ -1,5 +1,5 @@
 // login-page.ts
-import { Page, chromium, ElectronApplication } from 'playwright';
+import { Page, chromium} from 'playwright';
 import { expect } from 'chai';
 
 

@@ -1,6 +1,6 @@
 import { Given, When, Then, Before, After } from '@cucumber/cucumber';
 import { chromium, firefox, Page, webkit} from 'playwright';
-import { Elements } from '../../../features/pages/objectModel';
+import { Elements } from '../../../features/pages/objectModel-playwright';
 import { ApiRequestTest } from '../../../utils/api_request';
 import { expect } from 'chai';
 import { url } from 'webdriverio/build/commands/browser';

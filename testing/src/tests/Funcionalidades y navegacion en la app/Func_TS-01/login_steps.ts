@@ -1,8 +1,8 @@
 import { Given, When, Then, Before, After } from '@cucumber/cucumber';
 import { expect } from 'chai';
 import { chromium, firefox, Page, webkit} from 'playwright';
-import { Elements } from '../../../features/pages/objectModel';
-import { Links } from '../../../features/pages/linksProperties'; 
+import { Elements } from '../../../features/pages/objectModel-playwright';
+import { Links } from '../Nav_TS-01/linksProperties'; 
 
 let browser;
 let page: Page
