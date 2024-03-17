@@ -4,11 +4,13 @@ import {
   INSTRUCTOR_REPOSITORY,
   InstructorRepository,
 } from './instructor.repository';
+import { INSTRUCTOR_STORAGE, InstructorStorage } from './instructor.storage';
 
 @Injectable()
 export class InstructorsService {
   constructor(
     @Inject(INSTRUCTOR_REPOSITORY) private instructors: InstructorRepository,
+    @Inject(INSTRUCTOR_STORAGE) private storage: InstructorStorage,
   ) {}
   async findAll() {
     try {
@@ -34,9 +36,10 @@ export class InstructorsService {
         console.log('>> CREATE SERVICE [ no persisted ]');
       }
 
+      const image_url = await this.storage.upload(file);
       const result = await this.instructors.create({
         ..._body,
-        image_url: '',
+        image_url,
       });
       console.info('>> CREATE SERVICE [ result:', result, ']');
       return result;
