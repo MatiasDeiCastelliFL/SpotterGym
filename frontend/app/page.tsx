@@ -36,7 +36,7 @@ export default function Page() {
           <div>
             <Image src={logoPrincipal}  alt='logo-principal' className='w-[500px] '/>
           </div>
-          <p style={{color:`rgb(113 107 107)`}} className=' items-start text-[.9rem] sm:text-[1.6rem]  font-extrabold'>Cada repetición cuenta. Cada meta es tuya.</p>
+          <h2 style={{color:`rgb(113 107 107)`}} className='flex flex-col justify-center items-start text-[.9rem] sm:text-[1.6rem]  font-extrabold'> <p className='text-center'> Cada repetición cuenta.</p> <p className='text-center w-full'>Tuya es la meta.</p></h2>
           {
             rolUser === "" ? (
               <div className='mt-[1rem]'>
