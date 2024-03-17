@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { CreateInstructorDTO } from 'src/instructors/dto/create';
+import { CreateInstructorDTO } from 'src/instructors/dto/create.dto';
 import { Instructor } from 'src/instructors/instructor.entity';
 import { InstructorRepository } from 'src/instructors/instructor.repository';
 import { InstructorModel } from 'src/instructors/instructor.schema';

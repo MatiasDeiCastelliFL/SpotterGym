@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
-import { InstructorPostBody } from './dto/create';
+import { InstructorPostBody } from './dto/create.dto';
 import {
   INSTRUCTOR_REPOSITORY,
   InstructorRepository,

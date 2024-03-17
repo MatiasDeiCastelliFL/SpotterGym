@@ -1,4 +1,4 @@
-import { CreateInstructorDTO } from './dto/create';
+import { CreateInstructorDTO } from './dto/create.dto';
 import { Instructor } from './instructor.entity';
 
 export const INSTRUCTOR_REPOSITORY = 'InstructorRepository';
