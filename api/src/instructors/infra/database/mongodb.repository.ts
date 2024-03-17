@@ -14,8 +14,8 @@ export class MongoInstructorRepository implements InstructorRepository {
     const result = await this.instructorsModel.find(criteria).exec();
     return result;
   }
-  async findAll(): Promise<Instructor[]> {
-    const instructors = await this.instructorsModel.find().exec();
+  async findAll(params = {}): Promise<Instructor[]> {
+    const instructors = await this.instructorsModel.find(params).exec();
     return instructors;
   }
   async create(instructor: CreateInstructorDTO) {

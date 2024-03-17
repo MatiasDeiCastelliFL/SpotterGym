@@ -9,6 +9,11 @@ import { INSTRUCTOR_STORAGE, InstructorStorage } from './instructor.storage';
 
 @Injectable()
 export class InstructorsService {
+  async findBy(id: string) {
+    const instructors = await this.instructors.findBy({ _id: id });
+    console.log('SHOW SERVICE', instructors);
+    return instructors[0];
+  }
   constructor(
     @Inject(INSTRUCTOR_REPOSITORY) private instructors: InstructorRepository,
     @Inject(INSTRUCTOR_STORAGE) private storage: InstructorStorage,

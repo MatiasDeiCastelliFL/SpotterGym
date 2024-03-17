@@ -1,5 +1,6 @@
 import {
   IsEmail,
+  IsMongoId,
   IsNotEmpty,
   IsOptional,
   Matches,
@@ -7,10 +8,10 @@ import {
 } from 'class-validator';
 
 export class InstructorPostBody {
-  @IsNotEmpty()
+  @IsNotEmpty({ message: 'firstname must be present' })
   firstName: string;
 
-  @IsNotEmpty()
+  @IsNotEmpty({ message: 'lastname must be present' })
   lastName: string;
 
   @IsOptional()
@@ -22,12 +23,13 @@ export class InstructorPostBody {
   )
   phone: string;
 
-  @MaxLength(150)
+  @MaxLength(150, { message: "description can't exceed 150 characters" })
   description: string;
 
   @IsEmail()
   email: string;
 
+  @IsNotEmpty({ message: 'password must be present' })
   password: string;
 }
 
@@ -45,4 +47,9 @@ export class CreateInstructorDTO {
   password: string;
 
   image_url: string;
+}
+
+export class ParamShowInstructor {
+  @IsMongoId({ message: 'must be a valid id' })
+  id: string;
 }

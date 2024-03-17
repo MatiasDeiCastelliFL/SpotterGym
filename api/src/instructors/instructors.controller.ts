@@ -3,11 +3,13 @@ import {
   Body,
   Controller,
   Get,
+  NotFoundException,
+  Param,
   Post,
   UploadedFile,
   UseInterceptors,
 } from '@nestjs/common';
-import { InstructorPostBody } from './dto/create.dto';
+import { InstructorPostBody, ParamShowInstructor } from './dto/create.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { InstructorsService } from './instructors.service';
 
@@ -69,6 +71,23 @@ export class InstructorsController {
       console.error('>> CONTROLLER', error);
 
       throw new BadRequestException(error.message);
+    }
+  }
+
+  @Get(':id')
+  async show(@Param() param: ParamShowInstructor) {
+    try {
+      const instructor = await this.instructors.findBy(param.id);
+      if (!instructor) throw new NotFoundException('instructor not found');
+
+      console.info('>> SHOW CONTROLLER', instructor);
+      return this.parse_(instructor);
+    } catch (error) {
+      console.error('>>>>>>\n', error, '<<<<<<<<\n');
+      if (error.name === 'NotFoundException')
+        throw new NotFoundException('instructor not found');
+
+      throw new BadRequestException(error);
     }
   }
 }
