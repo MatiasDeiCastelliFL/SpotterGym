@@ -1,4 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
+import * as bcrypt from 'bcrypt';
 import { InstructorPostBody } from './dto/create';
 import {
   INSTRUCTOR_REPOSITORY,
@@ -36,6 +37,7 @@ export class InstructorsService {
         console.log('>> CREATE SERVICE [ no persisted ]');
       }
 
+      _body.password = await bcrypt.hash(_body.password, 10);
       const image_url = await this.storage.upload(file);
       const result = await this.instructors.create({
         ..._body,
