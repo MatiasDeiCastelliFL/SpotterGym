@@ -105,6 +105,8 @@ export class InstructorsController {
     for (const k in body) {
       data[k] = body[k];
     }
+    if (Object.entries(data).length === 0)
+      throw new BadRequestException('no data to update');
 
     console.info(
       '>> PATCH CONTROLLER',
@@ -114,7 +116,12 @@ export class InstructorsController {
     );
 
     const instructor = await this.instructors.update(param.id, body, file);
-    console.info('PATCH CONTROLLER [instructor]', instructor);
+
+    console.info(
+      'PATCH CONTROLLER [instructor]',
+      instructor.firstName,
+      instructor.lastName,
+    );
     return {
       message: 'instructor updated',
       data: this.parse_(instructor),

@@ -21,21 +21,17 @@ export class InstructorsService {
       throw new Error(message);
     }
 
-    console.info('>> UPDATE SERVICE [body]', Object.keys(body));
     for (const [attr, value] of Object.entries(body)) {
-      console.info(
-        `>> UPDATE SERVICE [${attr} = ${value}]`,
-        instructor[attr],
-        value,
-      );
-      instructor[attr] = body[attr];
+      instructor[attr] = value;
     }
     if (file) {
       const image_url = await this.storage.upload(file);
       instructor.image_url = image_url;
     }
-
-    console.log('>> UPDATE SERVICE', instructor);
+    console.info(
+      '>> UPDATE SERVICE',
+      Object.entries(body).map((e) => e.join(' => ')),
+    );
     return await this.instructors.update(instructor);
   }
   async findBy(id: string) {
