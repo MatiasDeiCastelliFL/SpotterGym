@@ -7,7 +7,7 @@ import * as dotenv from 'dotenv';
 dotenv.config();
 
 const features = [];
-features.push(InstructorModule);
+features.push(InstructorsModule);
 features.push(RolModule);
 
 @Module({
