@@ -3,8 +3,8 @@ import { InstructorsController } from './instructors.controller';
 import { InstructorsService } from './instructors.service';
 import { MongooseModule } from '@nestjs/mongoose';
 
-import { Instructor } from './instructor.entity';
-import { InstructorSchema } from './instructor.schema';
+import { Instructor } from './infra/database/instructor.entity';
+import { InstructorSchema } from './infra/database/instructor.schema';
 import { INSTRUCTOR_REPOSITORY } from './instructor.repository';
 import { MongoInstructorRepository } from './infra/database/mongodb.repository';
 import { INSTRUCTOR_STORAGE } from './instructor.storage';

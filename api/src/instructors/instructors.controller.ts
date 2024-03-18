@@ -98,11 +98,26 @@ export class InstructorsController {
   @UseInterceptors(FileInterceptor('photo'))
   async update(
     @Param() param: ParamShowInstructor,
-    @Body() data: InstructorUpdateBody,
+    @Body() body: InstructorUpdateBody,
     @UploadedFile() file: Express.Multer.File,
   ) {
-    return new NotFoundException(
-      `not found ${param.id} with ${data} and ${file.filename}`,
+    const data = {};
+    for (const k in body) {
+      data[k] = body[k];
+    }
+
+    console.info(
+      '>> PATCH CONTROLLER',
+      param.id,
+      Object.entries(data).map((e) => e.join(' => ')),
+      file ? file : 'no photo',
     );
+
+    const instructor = await this.instructors.update(param.id, body, file);
+    console.info('PATCH CONTROLLER [instructor]', instructor);
+    return {
+      message: 'instructor updated',
+      data: this.parse_(instructor),
+    };
   }
 }

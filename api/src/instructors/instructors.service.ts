@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
-import { InstructorPostBody } from './dto/create.dto';
+import { InstructorPostBody, InstructorUpdateBody } from './dto/create.dto';
 import {
   INSTRUCTOR_REPOSITORY,
   InstructorRepository,
@@ -9,6 +9,35 @@ import { INSTRUCTOR_STORAGE, InstructorStorage } from './instructor.storage';
 
 @Injectable()
 export class InstructorsService {
+  async update(
+    id: string,
+    body: InstructorUpdateBody,
+    file: Express.Multer.File,
+  ) {
+    const instructors = await this.instructors.findBy({ _id: id });
+    const instructor = instructors[0];
+    if (!instructor) {
+      const message = 'instructor not found';
+      throw new Error(message);
+    }
+
+    console.info('>> UPDATE SERVICE [body]', Object.keys(body));
+    for (const [attr, value] of Object.entries(body)) {
+      console.info(
+        `>> UPDATE SERVICE [${attr} = ${value}]`,
+        instructor[attr],
+        value,
+      );
+      instructor[attr] = body[attr];
+    }
+    if (file) {
+      const image_url = await this.storage.upload(file);
+      instructor.image_url = image_url;
+    }
+
+    console.log('>> UPDATE SERVICE', instructor);
+    return await this.instructors.update(instructor);
+  }
   async findBy(id: string) {
     const instructors = await this.instructors.findBy({ _id: id });
     console.log('SHOW SERVICE', instructors);

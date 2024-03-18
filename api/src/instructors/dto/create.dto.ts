@@ -56,11 +56,28 @@ export class ParamShowInstructor {
 
 export class InstructorUpdateBody {
   @IsOptional()
+  firstName: string;
+
+  @IsOptional()
+  lastName: string;
+
+  @IsOptional()
   @Matches(
     /^\+?(?:(?:00)?549?)?0?(?:11|[2368]\d)(?:(?=\d{0,2}15)\d{2})??\d{8}$/,
-    { message: 'phone not valid' },
+    {
+      message: 'phone not valid',
+    },
   )
   phone: string;
 
+  @IsOptional()
+  @MaxLength(150, { message: "description can't exceed 150 characters" })
+  description: string;
+
+  @IsOptional()
+  @IsEmail()
+  email: string;
+
+  @IsOptional()
   password: string;
 }
