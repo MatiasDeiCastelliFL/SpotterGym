@@ -91,7 +91,7 @@ export default function LoginForm() {
           router.push("/inicio/duennio");
         }
 
-        if(dashRedirect === "profesor/a"){
+        if(dashRedirect === "profesor"){
           router.push("/inicio/profesor")
         }
 
@@ -127,7 +127,7 @@ export default function LoginForm() {
       router.push("/inicio/duennio");
     }
 
-    if(rolUser === "profesor/a"){
+    if(rolUser === "profesor"){
       router.push("/inicio/profesor")
     }
 

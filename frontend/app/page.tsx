@@ -6,9 +6,9 @@ import logoPrincipal from "../public/Frame - princial.svg"
 import imageBg from "../public/noiseEffect Presentation.png";
 import { useGlobalStore } from './store/GlobalStore';
 import rolCliente from "../public/rol-cliente.png";
-import rolGimnasio from "../public/rol-dueño.png"
-import rolInstructor from "../public/rol-profesor.png"
-import logoInferior from "../public/logoInferior.png"
+import rolGimnasio from "../public/rol-dueño.png";
+import rolInstructor from "../public/rol-profesor.png";
+import logoInferior from "../public/logoInferior.png";
 
 
 
@@ -31,20 +31,19 @@ export default function Page() {
     <div className="bg-black ">
 
       <div className='relative w-full h-screen '>
-          <Image src={imageBg} alt='fondo' className='w-full h-full md:w-1/2 lg:w-1/3' layout="fill" objectFit="cover" />
-
+          <Image src={imageBg} alt='fondo' className=' w-full h-full md:w-1/2 lg:w-1/3' layout="fill" objectFit="cover" />
         <div className='px-[16px] pt-[32px] absolute top-0 left-0 right-0 bottom-0 flex flex-col justify-center items-center'>
           <div>
             <Image src={logoPrincipal}  alt='logo-principal' className='w-[500px] '/>
           </div>
-          <p className=' items-start text-[.9rem] sm:text-[1.6rem]  font-extrabold'>Cada repetición cuenta. Cada meta es tuya.</p>
+          <h2 style={{color:`rgb(113 107 107)`}} className='flex flex-col justify-center items-start text-[.9rem] sm:text-[1.6rem]  font-extrabold'> <p className='text-center'> Cada repetición cuenta.</p> <p className='text-center w-full'>Tuya es la meta.</p></h2>
           {
             rolUser === "" ? (
               <div className='mt-[1rem]'>
-            <button onClick={()=>{router.push("/acceso")}} type="button" className="text-white bg-primaryDefault hover:bg-primaryDefault focus:ring-4 focus:primaryDefault font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2  focus:outline-none dark:focus:primaryDefault">
+            <button onClick={()=>{router.push("/acceso")}} type="button" className="text-black  bg-primaryDefault hover:bg-primaryDefault focus:ring-4 focus:primaryDefault font-bold rounded-lg text-[1.1rem]  px-5 py-2.5 me-2 mb-2  focus:outline-none dark:focus:primaryDefault">
               Inicia sesion
             </button>
-            <button onClick={()=>{router.push("/registro")}} type="button" className="text-white bg-primaryDefault hover:bg-primaryDefault focus:ring-4 focus:primaryDefault font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2  focus:outline-none dark:focus:primaryDefault">
+            <button onClick={()=>{router.push("/registro")}} type="button" className="text-black bg-primaryDefault hover:bg-primaryDefault focus:ring-4 focus:primaryDefault font-bold rounded-lg text-[1.1rem] px-5 py-2.5 me-2 mb-2  focus:outline-none dark:focus:primaryDefault">
               Registrarse
             </button>
           </div>
