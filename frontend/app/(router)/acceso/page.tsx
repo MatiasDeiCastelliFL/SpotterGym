@@ -91,7 +91,7 @@ export default function LoginForm() {
           router.push("/inicio/duennio");
         }
 
-        if(dashRedirect === "profesor/a"){
+        if(dashRedirect === "profesor"){
           router.push("/inicio/profesor")
         }
 
@@ -127,7 +127,7 @@ export default function LoginForm() {
       router.push("/inicio/duennio");
     }
 
-    if(rolUser === "profesor/a"){
+    if(rolUser === "profesor"){
       router.push("/inicio/profesor")
     }
 
@@ -161,7 +161,10 @@ export default function LoginForm() {
           ) : (
             <>
               <div className='flex justify-center mb-40'>
-                <Image src={spotterLogo} alt='logo' />
+                <Link href={"/"}>
+                  <Image src={spotterLogo} alt='logo' />
+                </Link>
+                
               </div>
               <h2 className='mb-6'>Inicia Sesión</h2>
               <label htmlFor='email' className='mb-2'>
