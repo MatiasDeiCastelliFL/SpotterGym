@@ -49,7 +49,7 @@ export default function Page() {
           </div>
             ) : (
 
-            <button onClick={()=>{redirectToApp()}} type="button" className="text-black bg-primaryDefault hover:bg-primaryDefault focus:ring-4 focus:primaryDefault font-bold rounded-lg text-[1.1rem] px-5 py-2.5 me-2 mb-2  focus:outline-none dark:focus:primaryDefault">
+            <button onClick={()=>{redirectToApp()}} type="button" className="font-bold text-black bg-primaryDefault hover:bg-primaryDefault focus:ring-4 focus:primaryDefault  rounded-lg text-[1.1rem] px-5 py-2.5 me-2 mb-2  focus:outline-none dark:focus:primaryDefault">
               Ir a la App
             </button>
             )
