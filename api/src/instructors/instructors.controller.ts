@@ -10,6 +10,7 @@ import {
   UploadedFile,
   UseInterceptors,
 } from '@nestjs/common';
+import { ApiTags, ApiOkResponse } from '@nestjs/swagger';
 import {
   InstructorPostBody,
   InstructorUpdateBody,
@@ -22,6 +23,7 @@ import * as dotenv from 'dotenv';
 dotenv.config();
 const HOST = `${process.env.PROTOCOL}://${process.env.DOMAIN}:${process.env.PORT}/instructors`;
 
+@ApiTags('Instructors')
 @Controller('instructors')
 export class InstructorsController {
   constructor(private instructors: InstructorsService) {}
@@ -44,7 +46,12 @@ export class InstructorsController {
       },
     };
   }
+
   @Get()
+  @ApiOkResponse({
+    description:
+      'Retorna una lista de instructores. Puede ser vacía o con los instructores almacenados',
+  })
   async index(): Promise<object> {
     const response = {
       message: 'not found instructors',
