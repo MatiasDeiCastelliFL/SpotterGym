@@ -23,7 +23,6 @@ export class RolService {
           message: 'Rol not found',
         };
       }
-    } else {
     }
     return await this.rolModel.find().exec();
   }
@@ -35,7 +34,7 @@ export class RolService {
       .exec();
     if (searchRol) {
       return {
-        status: HttpStatus.NOT_FOUND,
+        status: HttpStatus.CONFLICT,
         message: 'role is already registered',
       };
     } else {
