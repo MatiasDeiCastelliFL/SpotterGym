@@ -53,3 +53,14 @@ export class ParamShowInstructor {
   @IsMongoId({ message: 'must be a valid id' })
   id: string;
 }
+
+export class InstructorUpdateBody {
+  @IsOptional()
+  @Matches(
+    /^\+?(?:(?:00)?549?)?0?(?:11|[2368]\d)(?:(?=\d{0,2}15)\d{2})??\d{8}$/,
+    { message: 'phone not valid' },
+  )
+  phone: string;
+
+  password: string;
+}

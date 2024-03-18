@@ -5,11 +5,16 @@ import {
   Get,
   NotFoundException,
   Param,
+  Patch,
   Post,
   UploadedFile,
   UseInterceptors,
 } from '@nestjs/common';
-import { InstructorPostBody, ParamShowInstructor } from './dto/create.dto';
+import {
+  InstructorPostBody,
+  InstructorUpdateBody,
+  ParamShowInstructor,
+} from './dto/create.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { InstructorsService } from './instructors.service';
 
@@ -80,14 +85,24 @@ export class InstructorsController {
       const instructor = await this.instructors.findBy(param.id);
       if (!instructor) throw new NotFoundException('instructor not found');
 
-      console.info('>> SHOW CONTROLLER', instructor);
       return this.parse_(instructor);
     } catch (error) {
-      console.error('>>>>>>\n', error, '<<<<<<<<\n');
       if (error.name === 'NotFoundException')
         throw new NotFoundException('instructor not found');
 
       throw new BadRequestException(error);
     }
+  }
+
+  @Patch(':id')
+  @UseInterceptors(FileInterceptor('photo'))
+  async update(
+    @Param() param: ParamShowInstructor,
+    @Body() data: InstructorUpdateBody,
+    @UploadedFile() file: Express.Multer.File,
+  ) {
+    return new NotFoundException(
+      `not found ${param.id} with ${data} and ${file.filename}`,
+    );
   }
 }
