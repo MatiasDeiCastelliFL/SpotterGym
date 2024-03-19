@@ -18,9 +18,7 @@ import {
 import { FileInterceptor } from '@nestjs/platform-express';
 import { InstructorsService } from './instructors.service';
 
-import * as dotenv from 'dotenv';
-dotenv.config();
-const HOST = `${process.env.PROTOCOL}://${process.env.DOMAIN}:${process.env.PORT}/instructors`;
+import { SPOTTER_GYM_URL } from 'src/utils/common';
 
 @Controller('instructors')
 export class InstructorsController {
@@ -38,9 +36,9 @@ export class InstructorsController {
         description,
       },
       links: {
-        self: `${HOST}/${instructor._id}`,
+        self: `${SPOTTER_GYM_URL}/${instructor._id}`,
         image_url,
-        reviews: `${HOST}/${instructor._id}/reviews`,
+        reviews: `${SPOTTER_GYM_URL}/${instructor._id}/reviews`,
       },
     };
   }
