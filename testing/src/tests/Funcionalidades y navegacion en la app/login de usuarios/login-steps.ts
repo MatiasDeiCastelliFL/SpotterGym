@@ -1,6 +1,6 @@
 import { Given, When, Then, Before, After } from '@cucumber/cucumber';
 import { WebDriver, Builder, Browser, By } from 'selenium-webdriver';
-import { Elements } from '../pages/POM-selenium';
+import { Elements } from '../../../features/pages/POM-selenium';
 
 let driver: WebDriver;
 let elements: Elements
@@ -18,7 +18,6 @@ Given('estoy en la pagina inicio el usuario {string} ingresa sus credenciales {s
     console.log(username)
     console.log(password)
 
-    await new Promise(resolve => setTimeout(resolve, 1500));
     let title = await driver.getTitle();
     console.log(title)
 });
@@ -33,7 +32,9 @@ When('el usuario es redirigido a la pagina principal', async () => {
 });
 
 When('las credenciales ingresadas corresponden al Rol', async () => {
+    await new Promise(resolve => setTimeout(resolve, 3000));
     // Implementar la lógica para verificar que las credenciales ingresadas corresponden al rol del usuario
+    elements.datosParametrizadosRegistro(3)
 });
 
 When('se verifica que las credenciales otorgadas correspondan al rol', async () => {
