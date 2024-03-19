@@ -10,7 +10,12 @@ import {
   UploadedFile,
   UseInterceptors,
 } from '@nestjs/common';
-import { ApiTags, ApiOkResponse } from '@nestjs/swagger';
+import {
+  ApiTags,
+  ApiOkResponse,
+  ApiCreatedResponse,
+  ApiBadRequestResponse,
+} from '@nestjs/swagger';
 import {
   InstructorPostBody,
   InstructorUpdateBody,
@@ -71,6 +76,14 @@ export class InstructorsController {
   }
 
   @Post()
+  @ApiCreatedResponse({
+    description:
+      'Retorna una estructura con los datos almacenados y los enlaces a derivados del instructor',
+  })
+  @ApiBadRequestResponse({
+    description:
+      'En caso que falte un dato o el instructor ya haya registrado el email',
+  })
   @UseInterceptors(FileInterceptor('photo'))
   async create(
     @Body() body: InstructorPostBody,
