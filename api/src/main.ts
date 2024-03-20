@@ -21,7 +21,11 @@ async function bootstrap() {
     .addServer(`http://localhost:${PORT}/`, 'Local Server')
     .addServer('https://spottter-gym.onrender.com/', 'Develop Server')
     .setVersion('1.0')
+    .addTag('index', 'Operaciones sobre la raíz')
+    .addTag('Instructores', 'Operaciones sobre los instructores')
+    .addTag('Roles', 'Operaciones sobre los roles definidos en el gimnasio')
     .build();
+
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('documentation', app, document);
   app.enableCors();
