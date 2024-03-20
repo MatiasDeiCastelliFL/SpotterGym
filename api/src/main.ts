@@ -2,7 +2,6 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import * as express from 'express';
 import { PORT } from './utils/common';
 
 async function bootstrap() {
@@ -25,7 +24,6 @@ async function bootstrap() {
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('documentation', app, document);
-  app.use(express.urlencoded({ extended: true }));
   app.enableCors();
   await app.listen(PORT || 3000);
 }
