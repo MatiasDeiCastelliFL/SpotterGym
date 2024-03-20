@@ -11,17 +11,9 @@ import {
   UseInterceptors,
 } from '@nestjs/common';
 import {
-  ApiTags,
-  ApiOkResponse,
-  ApiCreatedResponse,
-  ApiBadRequestResponse,
-  ApiParam,
-} from '@nestjs/swagger';
-import {
   InstructorPostBody,
   InstructorUpdateBody,
   ParamShowInstructor,
-  InstructorSuccessResponse,
 } from './dto/create.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { InstructorsService } from './instructors.service';
@@ -30,7 +22,6 @@ import * as dotenv from 'dotenv';
 dotenv.config();
 const HOST = `${process.env.PROTOCOL}://${process.env.DOMAIN}:${process.env.PORT}/instructors`;
 
-@ApiTags('Instructors')
 @Controller('instructors')
 export class InstructorsController {
   constructor(private instructors: InstructorsService) {}
@@ -55,10 +46,6 @@ export class InstructorsController {
   }
 
   @Get()
-  @ApiOkResponse({
-    description:
-      'Retorna una lista de instructores. Puede ser vacía o con los instructores almacenados',
-  })
   async index(): Promise<object> {
     const response = {
       message: 'not found instructors',
@@ -78,14 +65,6 @@ export class InstructorsController {
   }
 
   @Post()
-  @ApiCreatedResponse({
-    description:
-      'Retorna una estructura con los datos almacenados y los enlaces a derivados del instructor',
-  })
-  @ApiBadRequestResponse({
-    description:
-      'En caso que falte un dato o el instructor ya haya registrado el email',
-  })
   @UseInterceptors(FileInterceptor('photo'))
   async create(
     @Body() body: InstructorPostBody,
@@ -102,16 +81,6 @@ export class InstructorsController {
   }
 
   @Get(':id')
-  @ApiParam({
-    name: 'id',
-    type: String,
-    required: true,
-    example: '65f648e6ac3afe33ea674dab',
-  })
-  @ApiOkResponse({
-    description: 'Retorna una objeto con los datos del instructor',
-    type: InstructorSuccessResponse,
-  })
   async show(@Param() param: ParamShowInstructor) {
     try {
       const instructor = await this.instructors.findBy(param.id);
