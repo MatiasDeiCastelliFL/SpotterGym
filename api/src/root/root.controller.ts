@@ -1,6 +1,8 @@
 import { Controller, Get } from '@nestjs/common';
 import { SPOTTER_GYM_URL } from '../utils/common';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('index')
 @Controller()
 export class RootController {
   @Get()
