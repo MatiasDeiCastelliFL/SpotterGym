@@ -15,11 +15,13 @@ import {
   ApiOkResponse,
   ApiCreatedResponse,
   ApiBadRequestResponse,
+  ApiParam,
 } from '@nestjs/swagger';
 import {
   InstructorPostBody,
   InstructorUpdateBody,
   ParamShowInstructor,
+  InstructorSuccessResponse,
 } from './dto/create.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { InstructorsService } from './instructors.service';
@@ -100,6 +102,16 @@ export class InstructorsController {
   }
 
   @Get(':id')
+  @ApiParam({
+    name: 'id',
+    type: String,
+    required: true,
+    example: '65f648e6ac3afe33ea674dab',
+  })
+  @ApiOkResponse({
+    description: 'Retorna una objeto con los datos del instructor',
+    type: InstructorSuccessResponse,
+  })
   async show(@Param() param: ParamShowInstructor) {
     try {
       const instructor = await this.instructors.findBy(param.id);

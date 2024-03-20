@@ -1,3 +1,5 @@
+const SPOTTER_GYM_URL = 'http://localhost:9000/instructors';
+import { ApiProperty } from '@nestjs/swagger';
 import {
   IsEmail,
   IsMongoId,
@@ -8,12 +10,17 @@ import {
 } from 'class-validator';
 
 export class InstructorPostBody {
+  @ApiProperty({ description: 'Nombre del instructor' })
   @IsNotEmpty({ message: 'firstname must be present' })
   firstName: string;
 
+  @ApiProperty({ description: 'Apellido del instructor' })
   @IsNotEmpty({ message: 'lastname must be present' })
   lastName: string;
 
+  @ApiProperty({
+    description: 'Número de teléfono, según el formato Argentino',
+  })
   @IsOptional()
   @Matches(
     /^\+?(?:(?:00)?549?)?0?(?:11|[2368]\d)(?:(?=\d{0,2}15)\d{2})??\d{8}$/,
@@ -23,12 +30,20 @@ export class InstructorPostBody {
   )
   phone: string;
 
+  @ApiProperty({
+    description:
+      'Información o comentario sobre sí mismo, el instructor puede incluir expectativas',
+  })
   @MaxLength(150, { message: "description can't exceed 150 characters" })
   description: string;
 
+  @ApiProperty({
+    description: 'correo electrónico del instructor',
+  })
   @IsEmail()
   email: string;
 
+  @ApiProperty({ description: 'contraseña para acceder' })
   @IsNotEmpty({ message: 'password must be present' })
   password: string;
 }
@@ -55,6 +70,11 @@ export class ParamShowInstructor {
 }
 
 export class InstructorUpdateBody {
+  @ApiProperty({
+    description: 'Nombre nuevo del instructor',
+    type: String,
+    required: false,
+  })
   @IsOptional()
   firstName: string;
 
@@ -80,4 +100,24 @@ export class InstructorUpdateBody {
 
   @IsOptional()
   password: string;
+}
+
+class InstructorLinks {
+  @ApiProperty({ description: 'URL a si mismo' })
+  self: string;
+  @ApiProperty({ description: 'URL a la image de perfil' })
+  image_url: string;
+  @ApiProperty({
+    description: 'URL para listar las reseñas',
+    example: `${SPOTTER_GYM_URL}/65f648e6ac3afe33ea674dab/reviews`,
+  })
+  reviews: string;
+}
+
+export class InstructorSuccessResponse {
+  @ApiProperty({ type: InstructorPostBody })
+  data: InstructorPostBody;
+
+  @ApiProperty({ type: InstructorLinks })
+  links: InstructorLinks;
 }
