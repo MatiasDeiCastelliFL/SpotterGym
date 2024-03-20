@@ -61,7 +61,7 @@ El plan de pruebas cubrirá las funcionalidades de la app según la lista de req
 
 ## `Preparacion y Planificacion`
 
-- [Tablero de trabajo en Trello](https://trello.com/b/gyxztPmh/spotter)
+- [Tablero en Jira](https://spotter-gym.atlassian.net/jira/software/projects/SPOT/boards/2)
 - [Hitos / Milestones en GitHub](https://github.com/No-Country/s13-07-n-node-react/milestones)
 - [Diseño en Figma - Low-fi](https://www.figma.com/file/ZnUGAn04hZRJNplwjh5BoU/Spotter---Gym-App---No-Country?type=design&node-id=0-1&mode=design)
 - [Diseño en Figma - High-fi](https://www.figma.com/file/ZnUGAn04hZRJNplwjh5BoU/Spotter---Gym-App---No-Country?type=design&node-id=5-4&mode=design)
