@@ -12,7 +12,9 @@ import { RolService } from './rol.service';
 import { CreateRol, UpdatingRole } from './dto/rol.dto/rol.dto';
 import { NoFilesInterceptor } from '@nestjs/platform-express';
 import { ParseMongoIdPipe } from 'src/functions/global';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Roles')
 @Controller('rol')
 export class RolController {
   constructor(private readonly ServiceRol: RolService) {}
