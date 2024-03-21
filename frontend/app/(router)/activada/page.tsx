@@ -6,7 +6,7 @@ import Image from 'next/image';
 import aplaudir from "../../../public/aplaudir.png"
 import Link from 'next/link';
 
-const page = () => {
+const Page = () => {
     const router = useRouter()
     const searchParams = useSearchParams()
     const firstName = searchParams.get('firstName')
@@ -35,4 +35,4 @@ const page = () => {
   )
 }
 
-export default page;
+export default Page;
