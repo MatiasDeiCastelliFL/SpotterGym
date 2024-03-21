@@ -116,6 +116,9 @@ export class InstructorsController {
   }
 
   @Get(':id')
+  @ApiOkResponse({
+    type: InstructorResponse,
+  })
   async show(@Param() param: ParamShowInstructor) {
     try {
       const instructor = await this.instructors.findBy(param.id);
@@ -131,6 +134,13 @@ export class InstructorsController {
   }
 
   @Patch(':id')
+  @ApiOkResponse({
+    description: 'Retorna los datos del instructor con los datos modificados',
+    type: InstructorResponse,
+  })
+  @ApiBadRequestResponse({
+    description: 'En caso que algún dato no sea válido',
+  })
   @UseInterceptors(FileInterceptor('photo'))
   async update(
     @Param() param: ParamShowInstructor,

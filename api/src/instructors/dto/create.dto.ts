@@ -53,6 +53,10 @@ export class CreateInstructorDTO {
 }
 
 export class ParamShowInstructor {
+  @ApiProperty({
+    description: 'ID del instructor',
+    example: '65fc3cdfa97f60bc4a063244',
+  })
   @IsMongoId({ message: 'must be a valid id' })
   id: string;
 }
