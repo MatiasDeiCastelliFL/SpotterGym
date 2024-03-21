@@ -11,15 +11,28 @@ import {
   UseInterceptors,
 } from '@nestjs/common';
 import {
-  InstructorPostBody,
+  InstructorBodyData,
   InstructorUpdateBody,
   ParamShowInstructor,
+  InstructorsOkResponse,
+  InstructorPostBody,
+  InstructorResponse,
 } from './dto/create.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { InstructorsService } from './instructors.service';
 
+import {
+  ApiBadRequestResponse,
+  ApiBody,
+  ApiCreatedResponse,
+  ApiInternalServerErrorResponse,
+  ApiNotFoundResponse,
+  ApiOkResponse,
+  ApiTags,
+} from '@nestjs/swagger';
 import { SPOTTER_GYM_URL } from 'src/utils/common';
 
+@ApiTags('Instructores')
 @Controller('instructors')
 export class InstructorsController {
   constructor(private instructors: InstructorsService) {}
@@ -42,7 +55,16 @@ export class InstructorsController {
       },
     };
   }
+
   @Get()
+  @ApiOkResponse({
+    description:
+      'Devuelve un objeto con la lista de los instructores registrados',
+    type: InstructorsOkResponse,
+  })
+  @ApiInternalServerErrorResponse({
+    description: 'Cuando surge un problema dentro del servidor',
+  })
   async index(): Promise<object> {
     const response = {
       message: 'not found instructors',
@@ -62,9 +84,24 @@ export class InstructorsController {
   }
 
   @Post()
+  @ApiBody({
+    type: InstructorPostBody,
+  })
+  @ApiCreatedResponse({
+    description:
+      'Retorna un objeto con los datos del instructor registrado junto con sus enlaces',
+    type: InstructorResponse,
+  })
+  @ApiBadRequestResponse({
+    description:
+      'En caso que algún dato no sea válido, responde indicando que dato no es válido',
+  })
+  @ApiInternalServerErrorResponse({
+    description: 'Cuando surge algún problema interno',
+  })
   @UseInterceptors(FileInterceptor('photo'))
   async create(
-    @Body() body: InstructorPostBody,
+    @Body() body: InstructorBodyData,
     @UploadedFile() file: Express.Multer.File,
   ) {
     try {
@@ -78,6 +115,11 @@ export class InstructorsController {
   }
 
   @Get(':id')
+  @ApiOkResponse({
+    description: 'Retorna los datos del instructor con los enlaces',
+    type: InstructorResponse,
+  })
+  @ApiNotFoundResponse({ description: 'En caso que el ID no se encuentre.' })
   async show(@Param() param: ParamShowInstructor) {
     try {
       const instructor = await this.instructors.findBy(param.id);
@@ -93,6 +135,14 @@ export class InstructorsController {
   }
 
   @Patch(':id')
+  @ApiOkResponse({
+    description: 'Retorna los datos del instructor con los datos modificados',
+    type: InstructorResponse,
+  })
+  @ApiNotFoundResponse({ description: 'En caso que el ID no se encuentre.' })
+  @ApiBadRequestResponse({
+    description: 'En caso que algún dato no sea válido',
+  })
   @UseInterceptors(FileInterceptor('photo'))
   async update(
     @Param() param: ParamShowInstructor,
