@@ -6,7 +6,7 @@ import {
   MinLength,
 } from 'class-validator';
 
-export class createRol {
+export class createClient {
   @IsNotEmpty()
   @IsString()
   @MinLength(4)
@@ -29,4 +29,10 @@ export class createRol {
   nroDocument: string;
   @IsNotEmpty()
   typeDocuments: string;
+  @IsNotEmpty()
+  @IsString()
+  birthDate: string;
+  @IsNotEmpty()
+  @IsString()
+  role: string;
 }

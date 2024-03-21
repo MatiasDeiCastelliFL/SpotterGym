@@ -9,8 +9,10 @@ export class Client {
   lastName: string;
   @Prop()
   nroDocuments: string;
-  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'typeDocument' })
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'TypeDocument' })
   typeDocumentId: string;
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Rol' })
+  typeRolId: string;
   @Prop()
   phone: number;
   @Prop()
@@ -19,6 +21,8 @@ export class Client {
   birthDate: string;
   @Prop()
   image: string;
+  @Prop()
+  pass: string;
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Routines' })
   routines: mongoose.Types.ObjectId[];
   @Prop({ default: false })

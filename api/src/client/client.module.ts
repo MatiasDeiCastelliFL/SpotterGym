@@ -3,6 +3,11 @@ import { ClientController } from './client.controller';
 import { ClientService } from './client.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Client, clientSchema } from './schemas/Clients.schema';
+import {
+  TypeDocument,
+  TypeDocumentSchema,
+} from 'src/type-documents/schemas/typeDocuments.schema';
+import { Rol, RolSchema } from 'src/rol/schemas/Rol.schema';
 
 @Module({
   imports: [
@@ -10,6 +15,14 @@ import { Client, clientSchema } from './schemas/Clients.schema';
       {
         name: Client.name,
         schema: clientSchema,
+      },
+      {
+        name: TypeDocument.name,
+        schema: TypeDocumentSchema,
+      },
+      {
+        name: Rol.name,
+        schema: RolSchema,
       },
     ]),
   ],
