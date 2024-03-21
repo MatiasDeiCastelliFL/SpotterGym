@@ -10,6 +10,9 @@ export class RootController {
     return {
       message: 'Welcome to the index of Rest API for Spotter Gym',
       links: {
+        documentation: {
+          index: `${SPOTTER_GYM_URL}/documentation`,
+        },
         signUp: {
           index: `${SPOTTER_GYM_URL}/sign-up`,
         },
