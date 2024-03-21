@@ -27,6 +27,7 @@ import {
   ApiBody,
   ApiCreatedResponse,
   ApiInternalServerErrorResponse,
+  ApiNotFoundResponse,
   ApiOkResponse,
   ApiTags,
 } from '@nestjs/swagger';
@@ -117,8 +118,10 @@ export class InstructorsController {
 
   @Get(':id')
   @ApiOkResponse({
+    description: 'Retorna los datos del instructor con los enlaces',
     type: InstructorResponse,
   })
+  @ApiNotFoundResponse({ description: 'En caso que el ID no se encuentre.' })
   async show(@Param() param: ParamShowInstructor) {
     try {
       const instructor = await this.instructors.findBy(param.id);
@@ -138,6 +141,7 @@ export class InstructorsController {
     description: 'Retorna los datos del instructor con los datos modificados',
     type: InstructorResponse,
   })
+  @ApiNotFoundResponse({ description: 'En caso que el ID no se encuentre.' })
   @ApiBadRequestResponse({
     description: 'En caso que algún dato no sea válido',
   })
