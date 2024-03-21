@@ -1,3 +1,4 @@
+import { ApiProperty } from '@nestjs/swagger';
 import {
   IsEmail,
   IsMongoId,
@@ -82,4 +83,38 @@ export class InstructorUpdateBody {
 
   @IsOptional()
   password: string;
+}
+
+class InstructorData {
+  @ApiProperty()
+  firstName: string;
+  @ApiProperty()
+  lastName: string;
+  @ApiProperty()
+  email: string;
+  @ApiProperty()
+  phone: string;
+  @ApiProperty()
+  description: string;
+}
+
+class InstructorLinks {
+  self: string;
+  image_url: string;
+  reviews: string;
+}
+
+class InstructorResponse {
+  @ApiProperty({ type: [InstructorData] })
+  data: InstructorData[];
+
+  @ApiProperty()
+  links: InstructorLinks;
+}
+
+export class InstructorsOkResponse {
+  @ApiProperty()
+  message: string;
+  @ApiProperty({ type: [InstructorResponse] })
+  data: InstructorData[];
 }

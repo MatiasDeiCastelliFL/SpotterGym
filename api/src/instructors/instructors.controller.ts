@@ -14,14 +14,21 @@ import {
   InstructorPostBody,
   InstructorUpdateBody,
   ParamShowInstructor,
+  InstructorsOkResponse,
 } from './dto/create.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { InstructorsService } from './instructors.service';
 
 import * as dotenv from 'dotenv';
+import {
+  ApiInternalServerErrorResponse,
+  ApiOkResponse,
+  ApiTags,
+} from '@nestjs/swagger';
 dotenv.config();
 const HOST = `${process.env.PROTOCOL}://${process.env.DOMAIN}:${process.env.PORT}/instructors`;
 
+@ApiTags('Instructores')
 @Controller('instructors')
 export class InstructorsController {
   constructor(private instructors: InstructorsService) {}
@@ -46,6 +53,14 @@ export class InstructorsController {
   }
 
   @Get()
+  @ApiOkResponse({
+    description:
+      'Devuelve un objeto con la lista de los instructores registrados',
+    type: InstructorsOkResponse,
+  })
+  @ApiInternalServerErrorResponse({
+    description: 'Cuando surge un problema dentro del servidor',
+  })
   async index(): Promise<object> {
     const response = {
       message: 'not found instructors',
