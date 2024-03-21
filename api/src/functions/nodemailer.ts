@@ -99,7 +99,7 @@ export const send = async (id: string, email: string) => {
             <br />
             Haz click en el siguiente enlace para activar tu cuenta</p>
             <div class="button_wrapper">
-              <a href="http://localhost:3000/client/active/${id}" target= "_blank" class="button">Confirmar mi cuenta</a>
+              <a href="http://localhost:3000/client/active/email/${id}" target= "_blank" class="button">Confirmar mi cuenta</a>
             </div>
           </div>
         </div>`,

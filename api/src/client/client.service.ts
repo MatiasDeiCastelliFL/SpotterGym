@@ -236,6 +236,38 @@ export class ClientService {
       };
     }
   }
+  async activeAccountEmail(id: string) {
+    const searchClient = await this.clientMode
+      .findOne({
+        _id: id,
+      })
+      .exec();
+
+    if (!searchClient) {
+      return {
+        status: HttpStatus.NOT_FOUND,
+        message: 'id incorrect',
+      };
+    }
+    if (!searchClient.active) {
+      searchClient.active = true;
+      searchClient.save();
+      return {
+        status: HttpStatus.OK,
+        message: 'account successfully activated',
+        user: {
+          name: searchClient.firstName,
+          email: searchClient.email,
+          lastName: searchClient.lastName,
+        },
+      };
+    } else {
+      return {
+        status: HttpStatus.CONFLICT,
+        message: 'the account is already activated',
+      };
+    }
+  }
   async desactiveAcount(id: string) {
     const searchClient = await this.clientMode
       .findOne({
