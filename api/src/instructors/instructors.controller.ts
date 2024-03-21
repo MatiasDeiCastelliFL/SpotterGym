@@ -16,13 +16,16 @@ import {
   ParamShowInstructor,
   InstructorsOkResponse,
   InstructorPostBody,
+  InstructorResponse,
 } from './dto/create.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { InstructorsService } from './instructors.service';
 
 import * as dotenv from 'dotenv';
 import {
+  ApiBadRequestResponse,
   ApiBody,
+  ApiCreatedResponse,
   ApiInternalServerErrorResponse,
   ApiOkResponse,
   ApiTags,
@@ -84,6 +87,18 @@ export class InstructorsController {
   @Post()
   @ApiBody({
     type: InstructorPostBody,
+  })
+  @ApiCreatedResponse({
+    description:
+      'Retorna un objeto con los datos del instructor registrado junto con sus enlaces',
+    type: InstructorResponse,
+  })
+  @ApiBadRequestResponse({
+    description:
+      'En caso que algún dato no sea válido, responde indicando que dato no es válido',
+  })
+  @ApiInternalServerErrorResponse({
+    description: 'Cuando surge algún problema interno',
   })
   @UseInterceptors(FileInterceptor('photo'))
   async create(

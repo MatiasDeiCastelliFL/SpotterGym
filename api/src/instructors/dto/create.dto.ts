@@ -104,7 +104,7 @@ class InstructorLinks {
   reviews: string;
 }
 
-class InstructorResponse {
+export class InstructorResponse {
   @ApiProperty({ type: [InstructorData] })
   data: InstructorData[];
 
