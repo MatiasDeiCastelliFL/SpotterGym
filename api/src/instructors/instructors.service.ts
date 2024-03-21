@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
-import { InstructorPostBody, InstructorUpdateBody } from './dto/create.dto';
+import { InstructorBodyData, InstructorUpdateBody } from './dto/create.dto';
 import {
   INSTRUCTOR_REPOSITORY,
   InstructorRepository,
@@ -53,7 +53,7 @@ export class InstructorsService {
     }
   }
 
-  async create(_body: InstructorPostBody, file: Express.Multer.File) {
+  async create(_body: InstructorBodyData, file: Express.Multer.File) {
     file;
     const { email } = _body;
     try {

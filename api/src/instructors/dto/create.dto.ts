@@ -1,13 +1,15 @@
+import { ApiProperty, PartialType } from '@nestjs/swagger';
 import {
   IsEmail,
   IsMongoId,
   IsNotEmpty,
   IsOptional,
+  IsStrongPassword,
   Matches,
   MaxLength,
 } from 'class-validator';
 
-export class InstructorPostBody {
+export class InstructorBodyData {
   @IsNotEmpty({ message: 'firstname must be present' })
   firstName: string;
 
@@ -23,13 +25,14 @@ export class InstructorPostBody {
   )
   phone: string;
 
-  @MaxLength(150, { message: "description can't exceed 150 characters" })
-  description: string;
-
   @IsEmail()
   email: string;
 
+  @MaxLength(150, { message: "description can't exceed 150 characters" })
+  description: string;
+
   @IsNotEmpty({ message: 'password must be present' })
+  @IsStrongPassword()
   password: string;
 }
 
@@ -50,6 +53,10 @@ export class CreateInstructorDTO {
 }
 
 export class ParamShowInstructor {
+  @ApiProperty({
+    description: 'ID del instructor',
+    example: '65fc3cdfa97f60bc4a063244',
+  })
   @IsMongoId({ message: 'must be a valid id' })
   id: string;
 }
@@ -80,4 +87,45 @@ export class InstructorUpdateBody {
 
   @IsOptional()
   password: string;
+}
+
+class InstructorData {
+  @ApiProperty()
+  firstName: string;
+  @ApiProperty()
+  lastName: string;
+  @ApiProperty()
+  email: string;
+  @ApiProperty()
+  phone: string;
+  @ApiProperty()
+  description: string;
+}
+
+class InstructorLinks {
+  self: string;
+  image_url: string;
+  reviews: string;
+}
+
+export class InstructorResponse {
+  @ApiProperty({ type: [InstructorData] })
+  data: InstructorData[];
+
+  @ApiProperty()
+  links: InstructorLinks;
+}
+
+export class InstructorsOkResponse {
+  @ApiProperty()
+  message: string;
+  @ApiProperty({ type: [InstructorResponse] })
+  data: InstructorData[];
+}
+
+export class InstructorPostBody extends PartialType(InstructorBodyData) {
+  @ApiProperty({
+    description: 'Binario de la foto de perfil',
+  })
+  photo: object;
 }
