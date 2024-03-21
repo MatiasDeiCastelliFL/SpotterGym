@@ -1,4 +1,4 @@
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiProperty, PartialType } from '@nestjs/swagger';
 import {
   IsEmail,
   IsMongoId,
@@ -9,7 +9,7 @@ import {
   MaxLength,
 } from 'class-validator';
 
-export class InstructorPostBody {
+export class InstructorBodyData {
   @IsNotEmpty({ message: 'firstname must be present' })
   firstName: string;
 
@@ -117,4 +117,11 @@ export class InstructorsOkResponse {
   message: string;
   @ApiProperty({ type: [InstructorResponse] })
   data: InstructorData[];
+}
+
+export class InstructorPostBody extends PartialType(InstructorBodyData) {
+  @ApiProperty({
+    description: 'Binario de la foto de perfil',
+  })
+  photo: object;
 }

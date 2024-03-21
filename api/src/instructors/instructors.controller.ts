@@ -11,16 +11,18 @@ import {
   UseInterceptors,
 } from '@nestjs/common';
 import {
-  InstructorPostBody,
+  InstructorBodyData,
   InstructorUpdateBody,
   ParamShowInstructor,
   InstructorsOkResponse,
+  InstructorPostBody,
 } from './dto/create.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { InstructorsService } from './instructors.service';
 
 import * as dotenv from 'dotenv';
 import {
+  ApiBody,
   ApiInternalServerErrorResponse,
   ApiOkResponse,
   ApiTags,
@@ -80,9 +82,12 @@ export class InstructorsController {
   }
 
   @Post()
+  @ApiBody({
+    type: InstructorPostBody,
+  })
   @UseInterceptors(FileInterceptor('photo'))
   async create(
-    @Body() body: InstructorPostBody,
+    @Body() body: InstructorBodyData,
     @UploadedFile() file: Express.Multer.File,
   ) {
     try {
