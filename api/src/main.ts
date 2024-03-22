@@ -1,11 +1,13 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { ValidationPipe } from '@nestjs/common';
+//import { ValidationPipe } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { PORT } from './utils/common';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule, { bodyParser: false });
+  const app = await NestFactory.create(AppModule);
+  //const app = await NestFactory.create(AppModule, { bodyParser: false });
+  /*
   app.useGlobalPipes(new ValidationPipe());
   app.useGlobalPipes(
     new ValidationPipe({
@@ -14,6 +16,7 @@ async function bootstrap() {
       transform: true,
     }),
   );
+  */
 
   const config = new DocumentBuilder()
     .setTitle('Spotter Gym Rest API Documentation')
