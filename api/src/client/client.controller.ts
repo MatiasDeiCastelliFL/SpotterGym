@@ -21,14 +21,63 @@ import { ParseMongoIdPipe } from 'src/functions/global';
 import { SeaerchAccess } from './dto/clientAccess.dto';
 import { RecoverClientsEmail, recoverClients } from './dto/recover.dto';
 import { Response } from 'express';
+import {
+  ApiBody,
+  ApiConsumes,
+  ApiQuery,
+  ApiResponse,
+  ApiTags,
+} from '@nestjs/swagger';
+import {
+  PostClients,
+  schemaClient,
+  searchRequired,
+} from './documents/documents';
 @Controller('client')
+@ApiTags('Clientes')
 export class ClientController {
   constructor(private readonly serviceClients: ClientService) {}
   @Get()
+  @ApiConsumes('multipart/form-data')
+  @ApiResponse({
+    status: 404,
+    description:
+      'The answers you may receive:<ul><br/><li class="colorText">Client not found.</li></ul><br/>',
+  })
+  @ApiResponse({
+    status: 200,
+    description:
+      'The answers you may receive:<ul><br/><li>[ ] = indicates that there is no client loaded.</li><br/><li>Will return all clients in an array.</li><br/><li>Will return a particular client if the name was specified.</li></ul><br/>',
+  })
+  @ApiQuery({
+    name: 'name',
+    required: false,
+    description: 'Enter the name of the client to search (Optional)',
+  })
   async getClient(@Query('name') name: string) {
     return this.serviceClients.filter_client(name);
   }
   @Post()
+  @ApiBody(PostClients())
+  @ApiConsumes('multipart/form-data')
+  @ApiResponse({
+    status: 201,
+    description: 'Client created successfully',
+    content: {
+      'multipart/form-data': {
+        schema: {
+          type: 'object',
+          properties: schemaClient(),
+          required: searchRequired(schemaClient()),
+        },
+      },
+    },
+  })
+  @ApiResponse({
+    status: 409,
+    description:
+      '\nIt will return an array with errors that are as follows:<ul><br/><li>email already exists.</li><br/><li>Select a rol correctly.</li><br/><li>phone already exists.</li><br/><li>Select a typeDocuments correctly</li></ul><br/>',
+  })
   @UseInterceptors(FileInterceptor('file'))
   async create_clients(
     @Body() createClients: createClient,

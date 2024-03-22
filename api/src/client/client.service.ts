@@ -22,7 +22,7 @@ export class ClientService {
   @Get()
   async filter_client(name: string) {
     if (name) {
-      const search = await this.clientMode.find({ name: name }).exec();
+      const search = await this.clientMode.find({ firstName: name }).exec();
       if (search.length > 0) {
         return {
           status: HttpStatus.OK,
@@ -73,7 +73,7 @@ export class ClientService {
         error.push('phone already exists');
       }
       if (!searchClientType) {
-        error.push('Select a type correctly');
+        error.push('Select a typeDocuments correctly');
       }
       return {
         status: HttpStatus.CONFLICT,
@@ -98,7 +98,7 @@ export class ClientService {
       client.save();
       return {
         status: HttpStatus.CREATED,
-        message: 'client created successfully',
+        message: 'Client created successfully',
       };
     } catch (error) {
       console.log(error);

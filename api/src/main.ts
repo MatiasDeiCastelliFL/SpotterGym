@@ -23,6 +23,7 @@ async function bootstrap() {
     .addTag('index', 'Operaciones sobre la raíz')
     .addTag('Instructores', 'Operaciones sobre los instructores')
     .addTag('Roles', 'Operaciones sobre los roles definidos en el gimnasio')
+    .addTag('Clientes', 'Operaciones sobre los clientes')
     .build();
 
   const document = SwaggerModule.createDocument(app, config);

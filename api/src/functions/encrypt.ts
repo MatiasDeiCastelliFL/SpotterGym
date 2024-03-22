@@ -13,7 +13,7 @@ export const descriptPass = async (
 ) => {
   const userSearch = await schema
     .findOne({ email: email })
-    .populate('typeDocumentId typeRolId routines')
+    .populate('typeRolId')
     .exec();
   if (!userSearch) {
     return {
