@@ -6,7 +6,6 @@ import { PORT } from './utils/common';
 
 async function bootstrap() {
    const app = await NestFactory.create(AppModule);
-   //const app = await NestFactory.create(AppModule, { bodyParser: false });
    app.useGlobalPipes(new ValidationPipe());
    app.useGlobalPipes(
       new ValidationPipe({
@@ -15,22 +14,18 @@ async function bootstrap() {
          transform: true,
       }),
    );
-
-   const config = new DocumentBuilder()
-      .setTitle('Spotter Gym Rest API Documentation')
-      .setDescription('Documentación de la REST Api de Spotter Gym')
-      .addServer(`http://localhost:${PORT}/`, 'Local Server')
-      .addServer('https://spottter-gym.onrender.com/', 'Develop Server')
-      .setVersion('1.0')
-      .addTag('index', 'Operaciones sobre la raíz')
-      .addTag('Instructores', 'Operaciones sobre los instructores')
-      .addTag('Roles', 'Operaciones sobre los roles definidos en el gimnasio')
-      .addTag(
-         'Usuarios',
-         'Operaciones para el control y acceso de los usuarios',
-      )
-      .build();
-
+  const config = new DocumentBuilder()
+    .setTitle('Spotter Gym Rest API Documentation')
+    .setDescription('Documentación de la REST Api de Spotter Gym')
+    .addServer(`http://localhost:${PORT}/`, 'Local Server')
+    .addServer('https://spottter-gym.onrender.com/', 'Develop Server')
+    .setVersion('1.0')
+    .addTag('index', 'Operaciones sobre la raíz')
+    .addTag('Instructores', 'Operaciones sobre los instructores')
+    .addTag('Roles', 'Operaciones sobre los roles definidos en el gimnasio')
+    .addTag('Clientes', 'Operaciones sobre los clientes')
+    .addTag('Usuarios','Operaciones para el control y acceso de los usuarios')
+    .build();
    const document = SwaggerModule.createDocument(app, config);
    SwaggerModule.setup('documentation', app, document);
    app.enableCors();
