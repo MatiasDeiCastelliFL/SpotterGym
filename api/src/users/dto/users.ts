@@ -6,7 +6,7 @@ export class UserBody {
       description: 'Correo electrónico del usuario',
       example: 'emanuel-gauler@spotter-gym.com.ar',
    })
-   @IsNotEmpty({ message: 'email must be present' })
+   @IsNotEmpty({ message: 'El correo electrónico debe estar presente' })
    @IsEmail()
    email: string;
 
@@ -14,7 +14,7 @@ export class UserBody {
       description: 'Contraseña del usuario',
       example: 'twreqt2537',
    })
-   @IsNotEmpty({ message: 'password must be present' })
+   @IsNotEmpty({ message: 'La contraseña debe estar presente' })
    password: string;
 }
 
@@ -30,7 +30,7 @@ export class UsersResponse {
 
    static NoUsers(): UsersResponse {
       return {
-         message: 'No users found',
+         message: 'Usuarios no encontrados',
          users: [],
       };
    }
