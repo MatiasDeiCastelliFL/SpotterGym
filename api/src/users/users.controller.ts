@@ -8,6 +8,7 @@ import {
 import { UsersService } from './users.service';
 import { UserBody as UserBodyDTO, UsersResponse } from './dto/users';
 import { JWT_SECRET } from 'src/utils/common';
+import { sign } from 'jsonwebtoken';
 
 @Controller('users')
 export class UsersController {
@@ -18,18 +19,19 @@ export class UsersController {
   }
 
   @Post('sign-in')
-  login(@Body() data: UserBodyDTO) {
-    const { email, password } = data;
-    console.info('>> sign in with', email, 'and', password);
-
+  async login(@Body() data: UserBodyDTO) {
     try {
-      const result = this.service.sign_in_with(data);
+      const result = await this.service.sign_in_with(data);
+      const token = sign(result, JWT_SECRET, {
+        algorithm: 'HS256',
+      });
+      console.warn('>> USER', data.email, 'GRANTED');
       return {
         message: 'Acceso garantisado',
-        token: jwt.encode(result, JWT_SECRET),
+        token,
       };
     } catch (error) {
-      console.error(error);
+      console.error('>> SIGN IN ERROR:', error);
       throw new BadRequestException(error);
     }
   }
