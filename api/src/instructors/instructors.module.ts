@@ -9,6 +9,8 @@ import { INSTRUCTOR_REPOSITORY } from './instructor.repository';
 import { MongoInstructorRepository } from './infra/database/mongodb.repository';
 import { INSTRUCTOR_STORAGE } from './instructor.storage';
 import { CloudinaryStorage } from './infra/storage/cloudinary.storage';
+import { UsersService } from 'src/users/users.service';
+import { UsersModule } from 'src/users/users.module';
 
 @Module({
   imports: [
@@ -18,11 +20,13 @@ import { CloudinaryStorage } from './infra/storage/cloudinary.storage';
         schema: InstructorSchema,
       },
     ]),
+    UsersModule,
   ],
   providers: [
     InstructorsService,
     { provide: INSTRUCTOR_REPOSITORY, useClass: MongoInstructorRepository },
     { provide: INSTRUCTOR_STORAGE, useClass: CloudinaryStorage },
+    UsersService,
   ],
   controllers: [InstructorsController],
 })

@@ -6,6 +6,7 @@ import { MongooseUserRepository } from './infra/database/mongoose.users.reposito
 import { MongooseModule } from '@nestjs/mongoose';
 import { UserSchema } from './infra/database/user.schema';
 import { User } from './user.entity';
+import { Rol, RolSchema } from 'src/rol/schemas/Rol.schema';
 
 @Module({
   imports: [
@@ -13,6 +14,10 @@ import { User } from './user.entity';
       {
         name: User.name,
         schema: UserSchema,
+      },
+      {
+        name: Rol.name,
+        schema: RolSchema,
       },
     ]),
   ],
@@ -24,5 +29,6 @@ import { User } from './user.entity';
       useClass: MongooseUserRepository,
     },
   ],
+  exports: [UsersService, USER_REPOSITORY],
 })
 export class UsersModule {}

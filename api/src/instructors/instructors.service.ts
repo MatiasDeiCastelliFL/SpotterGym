@@ -6,6 +6,7 @@ import {
   InstructorRepository,
 } from './instructor.repository';
 import { INSTRUCTOR_STORAGE, InstructorStorage } from './instructor.storage';
+import { UsersService } from 'src/users/users.service';
 
 @Injectable()
 export class InstructorsService {
@@ -42,6 +43,7 @@ export class InstructorsService {
   constructor(
     @Inject(INSTRUCTOR_REPOSITORY) private instructors: InstructorRepository,
     @Inject(INSTRUCTOR_STORAGE) private storage: InstructorStorage,
+    private users: UsersService,
   ) {}
   async findAll() {
     try {
@@ -54,17 +56,15 @@ export class InstructorsService {
   }
 
   async create(_body: InstructorBodyData, file: Express.Multer.File) {
-    file;
     const { email } = _body;
     try {
-      const persisted = await this.instructors.findBy({ email });
-      if (persisted.length) {
-        console.log('>> CREATE SERVICE [ persisted:', persisted[0].email, ']');
+      const user = await this.users.recovery_from(email);
+      if (user) {
+        console.log('>> CREATE SERVICE [ persisted:', user.email, ']');
         const message = 'email registrado';
-        if (persisted.length && email === persisted[0].email)
-          throw new Error(message);
+        if (user && email === user.email) throw new Error(message);
       } else {
-        console.log('>> CREATE SERVICE [ no persisted ]');
+        console.log('>> CREATE SERVICE [ no persisted ]', _body);
       }
 
       _body.password = await bcrypt.hash(_body.password, 10);
@@ -72,6 +72,11 @@ export class InstructorsService {
       const result = await this.instructors.create({
         ..._body,
         image_url,
+      });
+      await this.users.create_instructor_with({
+        email,
+        password: _body.password,
+        id: result._id,
       });
       console.info('>> CREATE SERVICE [ result:', result, ']');
       return result;
