@@ -2,6 +2,7 @@ import {
    BadRequestException,
    Body,
    Controller,
+   ForbiddenException,
    Get,
    Post,
 } from '@nestjs/common';
@@ -121,8 +122,12 @@ export class UsersController {
             token,
          };
       } catch (error) {
-         console.error('>> SIGN IN ERROR:', error);
-         throw new BadRequestException(error);
+         console.error('>> SIGN IN ERROR:', error.message);
+         if (error.message == 'Invalid Credentials') {
+            throw new ForbiddenException({ message: 'Acceso no autorizado' });
+         } else {
+            throw new BadRequestException(error);
+         }
       }
    }
 }
