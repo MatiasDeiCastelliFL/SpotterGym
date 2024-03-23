@@ -1,12 +1,11 @@
-//import { IsEmail, IsNotEmpty, IsStrongPassword } from 'class-validator';
+import { IsEmail, IsNotEmpty } from 'class-validator';
 
 export class UserBody {
-  //@IsNotEmpty({ message: 'email must be present' })
-  //@IsEmail()
+  @IsNotEmpty({ message: 'email must be present' })
+  @IsEmail()
   email: string;
 
-  //@IsNotEmpty({ message: 'password must be present' })
-  //@IsStrongPassword({ minLength: 8, minNumbers: 3 })
+  @IsNotEmpty({ message: 'password must be present' })
   password: string;
 }
 

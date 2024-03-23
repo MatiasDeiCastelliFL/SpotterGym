@@ -7,6 +7,7 @@ import {
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { UserBody as UserBodyDTO, UsersResponse } from './dto/users';
+import { JWT_SECRET } from 'src/utils/common';
 
 @Controller('users')
 export class UsersController {
@@ -23,8 +24,12 @@ export class UsersController {
 
     try {
       const result = this.service.sign_in_with(data);
-      return result;
+      return {
+        message: 'Acceso garantisado',
+        token: jwt.encode(result, JWT_SECRET),
+      };
     } catch (error) {
+      console.error(error);
       throw new BadRequestException(error);
     }
   }

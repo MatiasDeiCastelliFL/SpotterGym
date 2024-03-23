@@ -9,3 +9,5 @@ const URL_PORT = isNotHTTPS ? ':'.concat(process.env.PORT) : '';
 
 export const SPOTTER_GYM_URL = `${PROTOCOL}://${DOMAIN}${URL_PORT}`;
 export const PORT = process.env.PORT;
+
+export const JWT_SECRET = process.env.JWT_SECRET;

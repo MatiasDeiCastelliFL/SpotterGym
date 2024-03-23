@@ -1,6 +1,9 @@
+import { compare } from 'bcrypt';
 import { Inject, Injectable } from '@nestjs/common';
 import { UserBody } from './dto/users';
 import { USER_REPOSITORY, UserRepository } from './user.repository';
+import * as dotenv from 'dotenv';
+dotenv.config();
 
 @Injectable()
 export class UsersService {
@@ -29,21 +32,21 @@ export class UsersService {
     const users = await this.repository.find({ email });
     const user = users[0];
     if (!user) throw new Error('Invalid Credentials');
-    if (not_validated(password, user.password))
+    if ((await compare(password.trim(), user.password)) === false) {
       throw new Error('Invalid Credentials');
+    }
 
-    const { user_id, role_name } = user;
-    const result = { user_id, email: user.email, role_name };
-    return result;
+    try {
+      const { user_id, role_name } = user;
+      const result = { user_id, email: user.email, role_name };
+      return result;
+    } catch (error) {
+      console.error('>> SIGN-IN SERVICE', error);
+    }
   }
 
   async recovery_from(email: string) {
     const users = await this.repository.find({ email });
     return users[0];
   }
-}
-
-function not_validated(password: string, user_password: string) {
-  console.info('>> COMPARE PASSWORD', password, user_password);
-  return false;
 }
