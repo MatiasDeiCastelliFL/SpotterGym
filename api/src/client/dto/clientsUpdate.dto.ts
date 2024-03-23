@@ -1,37 +1,38 @@
-import {
-  IsEmail,
-  IsString,
-  IsStrongPassword,
-  MinLength,
-  IsOptional,
-} from 'class-validator';
+import { ApiProperty } from '@nestjs/swagger';
+import { IsString, IsOptional } from 'class-validator';
 
 export class updateClient {
   @IsString()
-  @MinLength(4)
   @IsOptional()
-  name?: string;
+  @ApiProperty()
+  firstName?: string;
   @IsString()
-  @MinLength(4)
   @IsOptional()
+  @ApiProperty()
   lastName?: string;
-  @IsEmail()
   @IsOptional()
+  @ApiProperty()
   email?: string;
   @IsString()
   @IsOptional()
-  @IsStrongPassword()
+  @ApiProperty()
   pass?: string;
-  @IsString()
   @IsOptional()
+  @ApiProperty()
   phone?: string;
   @IsString()
   @IsOptional()
-  nroDocument?: string;
+  @ApiProperty()
+  nroDocuments?: string;
   @IsString()
   @IsOptional()
-  typeDocuments?: string;
+  @ApiProperty()
+  typeDocumentId?: string;
   @IsString()
   @IsOptional()
+  @ApiProperty()
   birthDate?: string;
+  @IsOptional()
+  @ApiProperty({ type: 'file', format: 'string' })
+  file?: Express.Multer.File;
 }

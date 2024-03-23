@@ -1,4 +1,4 @@
-import { Get, HttpStatus, Injectable } from '@nestjs/common';
+import { HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { createClient } from './dto/clients.dto';
@@ -11,6 +11,7 @@ import { descriptPass, hassPass } from 'src/functions/encrypt';
 import { SeaerchAccess } from './dto/clientAccess.dto';
 import { RecoverClientsEmail, recoverClients } from './dto/recover.dto';
 import { recoverPass, send } from 'src/functions/nodemailer';
+import { create_object_client } from 'src/functions/global';
 
 @Injectable()
 export class ClientService {
@@ -19,10 +20,11 @@ export class ClientService {
     @InjectModel(TypeDocument.name) private typeDoc: Model<TypeDocument>,
     @InjectModel(Rol.name) private typeRol: Model<Rol>,
   ) {}
-  @Get()
   async filter_client(name: string) {
     if (name) {
-      const search = await this.clientMode.find({ firstName: name }).exec();
+      const search = await this.clientMode
+        .find({ $or: [{ firstName: name }] })
+        .exec();
       if (search.length > 0) {
         return {
           status: HttpStatus.OK,
@@ -51,10 +53,10 @@ export class ClientService {
       phone: createClients.phone,
     });
     const searchClientType = await this.typeDoc.findOne({
-      name: createClients.typeDocuments,
+      name: createClients.typeDocumentId,
     });
     const searchRolClient = await this.typeRol.findOne({
-      name: createClients.role,
+      name: createClients.typeRolId,
     });
     if (
       searchClientEmail ||
@@ -83,12 +85,12 @@ export class ClientService {
     const password = await hassPass(createClients.pass);
     try {
       const client = await this.clientMode.create({
-        firstName: createClients.name,
+        firstName: createClients.firstName,
         lastName: createClients.lastName,
         email: createClients.email,
         phone: createClients.phone,
         image: image,
-        nroDocuments: createClients.nroDocument,
+        nroDocuments: createClients.nroDocuments,
         typeDocumentId: searchClientType,
         birthDate: createClients.birthDate,
         typeRolId: searchRolClient,
@@ -110,9 +112,10 @@ export class ClientService {
     file?: Express.Multer.File,
   ) {
     const error = [];
+    const clientUpdates = {};
     if (file) {
       const sendImage = await uploadCloudinary(file);
-      updateClients['image'] = sendImage;
+      clientUpdates['image'] = sendImage;
     }
     const searchClient = await this.clientMode.findOne({ _id: id });
     if (
@@ -127,6 +130,23 @@ export class ClientService {
         .exec();
       if (searchEmail) {
         error.push('email already exists');
+      }
+    }
+    if (
+      updateClients.nroDocuments &&
+      searchClient &&
+      updateClients.nroDocuments != searchClient.nroDocuments
+    ) {
+      const searchEmail = await this.clientMode
+        .findOne({
+          $and: [
+            { nroDocuments: updateClients.nroDocuments },
+            { _id: { $ne: id } },
+          ],
+        })
+        .exec();
+      if (searchEmail) {
+        error.push('number the document already exists');
       }
     }
 
@@ -153,14 +173,35 @@ export class ClientService {
         error,
       };
     } else {
-      const clientUpdate = await this.clientMode
-        .findByIdAndUpdate(id, updateClients)
-        .exec();
-      clientUpdate.save();
-      return {
-        status: HttpStatus.OK,
-        message: 'account updated successfully',
-      };
+      const dataUpdated = create_object_client(
+        [
+          'firstName',
+          'lastName',
+          'email',
+          'pass',
+          'phone',
+          'nroDocument',
+          'typeDocuments',
+          'birthDate',
+          'file',
+        ],
+        updateClients,
+      );
+      if (Object.keys(dataUpdated).length !== 0) {
+        const clientUpdate = await this.clientMode
+          .findByIdAndUpdate(id, dataUpdated)
+          .exec();
+        clientUpdate.save();
+        return {
+          status: HttpStatus.OK,
+          message: 'Account updated successfully',
+        };
+      } else {
+        return {
+          status: HttpStatus.OK,
+          message: 'data is maintained',
+        };
+      }
     }
   }
 
@@ -219,7 +260,7 @@ export class ClientService {
     if (!searchClient) {
       return {
         status: HttpStatus.NOT_FOUND,
-        message: 'id incorrect',
+        message: 'Id incorrect',
       };
     }
     if (!searchClient.active) {
@@ -227,12 +268,12 @@ export class ClientService {
       searchClient.save();
       return {
         status: HttpStatus.OK,
-        message: 'account successfully activated',
+        message: 'Account successfully activated',
       };
     } else {
       return {
         status: HttpStatus.CONFLICT,
-        message: 'the account is already activated',
+        message: 'The account is already activated',
       };
     }
   }
@@ -287,12 +328,12 @@ export class ClientService {
       searchClient.save();
       return {
         status: HttpStatus.OK,
-        message: 'account successfully deactivate',
+        message: 'Account successfully deactivate',
       };
     } else {
       return {
         status: HttpStatus.CONFLICT,
-        message: 'the account is already deactivate',
+        message: 'The account is already deactivate',
       };
     }
   }

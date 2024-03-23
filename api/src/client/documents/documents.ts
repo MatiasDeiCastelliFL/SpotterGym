@@ -12,10 +12,10 @@ export const PostClients = () => {
           description:
             'It is not mandatory but you can add the profile photo of the client who is registering',
         },
-        name: {
+        firstName: {
           type: 'string',
           description:
-            'The name to be entered cannot be empty, it must have a minimum of 3 characters',
+            'The firstName to be entered cannot be empty, it must have a minimum of 3 characters',
         },
         lastName: {
           type: 'string',
@@ -41,7 +41,7 @@ export const PostClients = () => {
           type: 'string',
           description: 'The document number cannot be empty.',
         },
-        typeDocuments: {
+        typeDocumentId: {
           type: 'string',
           description:
             'the name of the typeDocuments added must be one that is registered in typeDocuments',
@@ -51,22 +51,22 @@ export const PostClients = () => {
           description:
             'The birthday date cannot be empty and must be sent in the format 03/01/2024',
         },
-        role: {
+        typeRolId: {
           type: 'string',
           description:
             'The name of the added role must be one that is registered in roles.',
         },
       },
       required: [
-        'name',
+        'firstName',
         'lastName',
         'email',
         'pass',
         'phone',
+        'typeDocumentId',
         'nroDocuments',
-        'typeDocuments',
         'birthDate',
-        'role',
+        'typeRolId',
       ],
     },
   };
@@ -74,16 +74,48 @@ export const PostClients = () => {
 
 export const schemaClient = () => {
   return {
-    name: { type: 'string' },
-    lastName: { type: 'string' },
-    email: { type: 'string', format: 'email' },
-    pass: { type: 'string' },
-    phone: { type: 'string' },
-    nroDocument: { type: 'string' },
-    typeDocuments: { type: 'string' },
-    birthDate: { type: 'string' },
-    role: { type: 'string' },
-    file: { type: 'string', format: 'file' },
+    firstName: {
+      type: 'string',
+      description: 'This is where the name will be entered.',
+    },
+    lastName: {
+      type: 'string',
+      description: 'This is where the lastName will be entered.',
+    },
+    email: {
+      type: 'string',
+      format: 'email',
+      description: 'This is where the email will be entered.',
+    },
+    pass: {
+      type: 'string',
+      description: 'This is where the pass will be entered.',
+    },
+    phone: {
+      type: 'string',
+      description: 'This is where the phone will be entered.',
+    },
+    nroDocuments: {
+      type: 'string',
+      description: 'This is where the nro document will be entered.',
+    },
+    typeDocumentId: {
+      type: 'string',
+      description: 'This is where the type documents will be entered.',
+    },
+    birthDate: {
+      type: 'string',
+      description: 'This is where the birthDate will be entered.',
+    },
+    typeRolId: {
+      type: 'string',
+      description: 'This is where the role will be entered.',
+    },
+    file: {
+      type: 'string',
+      format: 'file',
+      description: 'This is where the file will be entered.',
+    },
   };
 };
 

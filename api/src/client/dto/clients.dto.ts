@@ -13,7 +13,7 @@ export class createClient {
   @ApiProperty()
   @IsString()
   @MinLength(3)
-  name: string;
+  firstName: string;
   @IsNotEmpty()
   @ApiProperty()
   @IsString()
@@ -34,10 +34,10 @@ export class createClient {
   @IsNotEmpty()
   @IsString()
   @ApiProperty()
-  nroDocument: string;
+  nroDocuments: string;
   @IsNotEmpty()
   @ApiProperty()
-  typeDocuments: string;
+  typeDocumentId: string;
   @IsNotEmpty()
   @IsString()
   @ApiProperty()
@@ -45,7 +45,7 @@ export class createClient {
   @IsNotEmpty()
   @IsString()
   @ApiProperty()
-  role: string;
+  typeRolId: string;
   @IsOptional()
   @ApiProperty({ type: 'file', format: 'string' })
   file?: Express.Multer.File;
