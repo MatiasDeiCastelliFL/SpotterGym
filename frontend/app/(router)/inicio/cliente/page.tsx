@@ -9,13 +9,15 @@ import CardContainerActivities from '../../../Components/CardContainerActivities
 import fetchingDataGet from '@/app/utils/fetchingDataGet';
 import { urlAPi } from '@/app/utils/urlBase';
 import CardProfessor from '@/app/Components/CardProfessor';
+import AuthRoute from '@/app/Components/Auth/AuthRoute';
 
-export default async function  InicioCliente(){
-  const urlToFetch = `${urlAPi}/instructors`;
-  const data = await fetchingDataGet(urlToFetch);
+export default  function  Page(){
+  //const urlToFetch = `${urlAPi}/instructors`;
+  //const data = await fetchingDataGet(urlToFetch);
 
   return (
-    <div>
+    <AuthRoute>
+      <div>
       <GlobalContainer>
         <Header/>
         <div className="mt-[36px]">
@@ -25,7 +27,7 @@ export default async function  InicioCliente(){
         <CardClient/>
         <div>
           <SectionButton section={"Profesores"} description={"Accede a los profesores de tu sede"} active/>
-            <Suspense fallback={<div>Loading...</div>}>
+            {/*<Suspense fallback={<div>Loading...</div>}>
               <div className="h-52 overflow-hidden overflow-x-auto">
                 <div className='flex gap-2 w-[480px] '>
                     {data?.data?.map((profesor: any, key: React.Key | null | undefined)=>{
@@ -39,7 +41,7 @@ export default async function  InicioCliente(){
                     })}
                 </div>
               </div>
-            </Suspense>
+                  </Suspense>*/}
         </div>
 
         <div>
@@ -51,6 +53,8 @@ export default async function  InicioCliente(){
     </GlobalContainer>
     <Footer/>
     </div>
+    </AuthRoute>
+    
     
   )
 }
