@@ -14,8 +14,6 @@ class Instructor {
   @Prop({ unique: true })
   email: string;
   @Prop()
-  password: string;
-  @Prop()
   image_url: string;
 }
 

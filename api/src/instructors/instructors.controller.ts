@@ -49,9 +49,9 @@ export class InstructorsController {
         description,
       },
       links: {
-        self: `${SPOTTER_GYM_URL}/${instructor._id}`,
+        self: `${SPOTTER_GYM_URL}/instructors/${instructor._id}`,
         image_url,
-        reviews: `${SPOTTER_GYM_URL}/${instructor._id}/reviews`,
+        reviews: `${SPOTTER_GYM_URL}/instructors/${instructor._id}/reviews`,
       },
     };
   }
@@ -114,7 +114,7 @@ export class InstructorsController {
     }
   }
 
-  @Get(':id')
+  @Get('/:id')
   @ApiOkResponse({
     description: 'Retorna los datos del instructor con los enlaces',
     type: InstructorResponse,
@@ -124,7 +124,13 @@ export class InstructorsController {
     try {
       const instructor = await this.instructors.findBy(param.id);
       if (!instructor) throw new NotFoundException('instructor not found');
-
+      console.info(
+        '>> GET',
+        param.id,
+        'CONTROLLER',
+        instructor,
+        SPOTTER_GYM_URL,
+      );
       return this.parse_(instructor);
     } catch (error) {
       if (error.name === 'NotFoundException')
