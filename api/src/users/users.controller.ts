@@ -8,7 +8,11 @@ import {
    Query,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
-import { UserBody as UserBodyDTO, UserResponse, UsersResponse } from './dto/users';
+import {
+   UserBody as UserBodyDTO,
+   UserResponse,
+   UsersResponse,
+} from './dto/users';
 import { JWT_SECRET } from 'src/utils/common';
 import { sign } from 'jsonwebtoken';
 import {
