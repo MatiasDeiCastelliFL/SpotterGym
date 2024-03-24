@@ -26,7 +26,6 @@ export class MongooseUserRepository implements UserRepository {
 
    async find(params: object = {}): Promise<User[]> {
       const users = await this.users.find(params).exec();
-      console.info('>> USERS REPOSITORY', params, users);
       return users;
    }
 }
