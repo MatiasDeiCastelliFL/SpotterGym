@@ -62,7 +62,7 @@ export class UsersService {
       this.create_user_with({
          ...params,
          role_name: 'profesor',
-		});
+      });
    }
 
    async sign_in_with(data: UserBody) {
