@@ -13,22 +13,56 @@ export class UsersService {
       return await this.repository.find(params);
    }
 
+   async create_user_with(params: {
+      email: string;
+      password: string;
+      user_id: string;
+      role_name: string;
+   }) {
+      const { email, password, user_id, role_name } = params;
+      const role = await this.repository.recovery_role_from(role_name);
+      if (role) {
+         const user_data = {
+            email,
+            password,
+            user_id,
+            role_name,
+         };
+         console.info('>> CREATE USER SERVICE', user_data);
+         this.repository.create(user_data);
+      } else {
+         throw new Error('Rol no existe');
+      }
+   }
+
+   async create_admin_with(params: {
+      email: string;
+      password: string;
+      user_id: string;
+   }) {
+      this.create_user_with({ ...params, role_name: 'propietario' });
+   }
+
+   async create_client_with(params: {
+      email: string;
+      password: string;
+      user_id: string;
+   }) {
+      this.create_user_with({
+         ...params,
+         role_name: 'cliente',
+      });
+   }
+
    async create_instructor_with(params: {
       email: string;
       password: string;
-      id: any;
+      user_id: string;
    }) {
-      const { email, password, id } = params;
-      const instructor_role =
-         await this.repository.recovery_role_from('profesor');
-      const user_data = {
-         email,
-         password,
-         user_id: id,
-         role_name: instructor_role.name,
-      };
-      console.info('>> CREATE USER SERVICE', user_data);
-      this.repository.create(user_data);
+      this.create_user_with({
+         ...params,
+         role_name: 'profesor',
+		});
    }
 
    async sign_in_with(data: UserBody) {
