@@ -76,7 +76,7 @@ export class InstructorsService {
          await this.users.create_instructor_with({
             email,
             password: _body.password,
-            id: result._id,
+            user_id: result._id,
          });
          console.info('>> CREATE SERVICE [ result:', result, ']');
          return result;
