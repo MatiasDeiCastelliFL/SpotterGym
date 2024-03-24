@@ -9,26 +9,26 @@ import { User } from './user.entity';
 import { Rol, RolSchema } from 'src/rol/schemas/Rol.schema';
 
 @Module({
-  imports: [
-    MongooseModule.forFeature([
+   imports: [
+      MongooseModule.forFeature([
+         {
+            name: User.name,
+            schema: UserSchema,
+         },
+         {
+            name: Rol.name,
+            schema: RolSchema,
+         },
+      ]),
+   ],
+   controllers: [UsersController],
+   providers: [
+      UsersService,
       {
-        name: User.name,
-        schema: UserSchema,
+         provide: USER_REPOSITORY,
+         useClass: MongooseUserRepository,
       },
-      {
-        name: Rol.name,
-        schema: RolSchema,
-      },
-    ]),
-  ],
-  controllers: [UsersController],
-  providers: [
-    UsersService,
-    {
-      provide: USER_REPOSITORY,
-      useClass: MongooseUserRepository,
-    },
-  ],
-  exports: [UsersService, USER_REPOSITORY],
+   ],
+   exports: [UsersService, USER_REPOSITORY],
 })
 export class UsersModule {}

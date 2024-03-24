@@ -2,30 +2,30 @@ import * as nodemailer from 'nodemailer';
 import 'dotenv/config';
 
 const transporter = nodemailer.createTransport({
-  host: 'smtp.gmail.com',
-  port: 465,
-  secure: true,
-  auth: {
-    user: process.env.NODE_MAILER_NAME,
-    pass: process.env.NODE_MAILER_PASS,
-  },
+   host: 'smtp.gmail.com',
+   port: 465,
+   secure: true,
+   auth: {
+      user: process.env.NODE_MAILER_NAME,
+      pass: process.env.NODE_MAILER_PASS,
+   },
 });
 
 transporter
-  .verify()
-  .then(() => {
-    console.log('Ready for send emails');
-  })
-  .catch((err) => {
-    console.warn('Error sending emails', err);
-  });
+   .verify()
+   .then(() => {
+      console.log('Ready for send emails');
+   })
+   .catch((err) => {
+      console.warn('Error sending emails', err);
+   });
 
 export const send = async (id: string, email: string) => {
-  await transporter.sendMail({
-    from: 'spooter84@gmail.com',
-    to: email,
-    subject: 'Spooter',
-    html: `<head>
+   await transporter.sendMail({
+      from: 'spooter84@gmail.com',
+      to: email,
+      subject: 'Spooter',
+      html: `<head>
       <style>
       @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
   
@@ -103,15 +103,15 @@ export const send = async (id: string, email: string) => {
             </div>
           </div>
         </div>`,
-  });
+   });
 };
 
 export const recoverPass = async (id: string, email: string) => {
-  await transporter.sendMail({
-    from: 'spooter84@gmail.com',
-    to: email,
-    subject: 'Spooter',
-    html: `<head>
+   await transporter.sendMail({
+      from: 'spooter84@gmail.com',
+      to: email,
+      subject: 'Spooter',
+      html: `<head>
         <style>
         @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
     
@@ -187,5 +187,5 @@ export const recoverPass = async (id: string, email: string) => {
               </div>
             </div>
           </div>`,
-  });
+   });
 };

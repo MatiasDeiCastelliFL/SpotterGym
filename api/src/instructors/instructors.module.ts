@@ -13,21 +13,21 @@ import { UsersService } from 'src/users/users.service';
 import { UsersModule } from 'src/users/users.module';
 
 @Module({
-  imports: [
-    MongooseModule.forFeature([
-      {
-        name: Instructor.name,
-        schema: InstructorSchema,
-      },
-    ]),
-    UsersModule,
-  ],
-  providers: [
-    InstructorsService,
-    { provide: INSTRUCTOR_REPOSITORY, useClass: MongoInstructorRepository },
-    { provide: INSTRUCTOR_STORAGE, useClass: CloudinaryStorage },
-    UsersService,
-  ],
-  controllers: [InstructorsController],
+   imports: [
+      MongooseModule.forFeature([
+         {
+            name: Instructor.name,
+            schema: InstructorSchema,
+         },
+      ]),
+      UsersModule,
+   ],
+   providers: [
+      InstructorsService,
+      { provide: INSTRUCTOR_REPOSITORY, useClass: MongoInstructorRepository },
+      { provide: INSTRUCTOR_STORAGE, useClass: CloudinaryStorage },
+      UsersService,
+   ],
+   controllers: [InstructorsController],
 })
 export class InstructorsModule {}

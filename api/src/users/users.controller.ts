@@ -5,9 +5,10 @@ import {
    ForbiddenException,
    Get,
    Post,
+   Query,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
-import { UserBody as UserBodyDTO, UsersResponse } from './dto/users';
+import { UserBody as UserBodyDTO, UserResponse, UsersResponse } from './dto/users';
 import { JWT_SECRET } from 'src/utils/common';
 import { sign } from 'jsonwebtoken';
 import {
@@ -58,8 +59,19 @@ export class UsersController {
       },
    })
    @Get()
-   index(): UsersResponse {
-      return UsersResponse.NoUsers();
+   async index(@Query() params: UserResponse): Promise<UsersResponse> {
+      const response = UsersResponse.NoUsers();
+      const result = await this.service.list_user_with(params);
+      if (result.length) {
+         response.message = 'Usuarios registrados';
+         const users = result.map((e) => {
+            const { email, user_id, role_name } = e;
+            return UserResponse.from({ email, user_id, role_name });
+         });
+         response.users = users;
+      }
+      console.log('>> USERS CONTROLLER LISTING');
+      return response;
    }
 
    @ApiCreatedResponse({

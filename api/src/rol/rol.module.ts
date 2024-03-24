@@ -5,15 +5,15 @@ import { Rol, RolSchema } from './schemas/Rol.schema';
 import { MongooseModule } from '@nestjs/mongoose';
 
 @Module({
-  imports: [
-    MongooseModule.forFeature([
-      {
-        name: Rol.name,
-        schema: RolSchema,
-      },
-    ]),
-  ],
-  controllers: [RolController],
-  providers: [RolService],
+   imports: [
+      MongooseModule.forFeature([
+         {
+            name: Rol.name,
+            schema: RolSchema,
+         },
+      ]),
+   ],
+   controllers: [RolController],
+   providers: [RolService],
 })
 export class RolModule {}

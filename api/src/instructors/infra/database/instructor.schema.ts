@@ -3,18 +3,18 @@ import { Model, Document } from 'mongoose';
 
 @Schema()
 class Instructor {
-  @Prop({ required: true })
-  firstName: string;
-  @Prop({ required: true })
-  lastName: string;
-  @Prop()
-  phone: string;
-  @Prop()
-  description: string;
-  @Prop({ unique: true })
-  email: string;
-  @Prop()
-  image_url: string;
+   @Prop({ required: true })
+   firstName: string;
+   @Prop({ required: true })
+   lastName: string;
+   @Prop()
+   phone: string;
+   @Prop()
+   description: string;
+   @Prop({ unique: true })
+   email: string;
+   @Prop()
+   image_url: string;
 }
 
 export type InstructorDocument = Instructor & Document;
