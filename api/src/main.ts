@@ -18,7 +18,7 @@ async function bootstrap() {
     .setTitle('Spotter Gym Rest API Documentation')
     .setDescription('Documentación de la REST Api de Spotter Gym')
     .addServer(`http://localhost:${PORT}/`, 'Local Server')
-    .addServer('https://spottter-gym.onrender.com/', 'Develop Server')
+    .addServer('https://spotter-gym.onrender.com/', 'Develop Server')
     .setVersion('1.0')
     .addTag('index', 'Operaciones sobre la raíz')
     .addTag('Instructores', 'Operaciones sobre los instructores')
