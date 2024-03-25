@@ -26,6 +26,7 @@ async function bootstrap() {
     .addTag('Clientes', 'Operaciones sobre los clientes')
     .addTag('Usuarios','Operaciones para el control y acceso de los usuarios')
     .build();
+
    const document = SwaggerModule.createDocument(app, config);
    SwaggerModule.setup('documentation', app, document);
    app.enableCors();

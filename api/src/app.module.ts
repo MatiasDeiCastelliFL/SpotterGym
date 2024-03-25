@@ -17,7 +17,7 @@ features.push(ClientModule);
 features.push(TypeDocumentsModule);
 
 @Module({
-  imports: [MongooseModule.forRoot(process.env.CONEXION_DB), ...features],
-  controllers: [RootController],
+   imports: [MongooseModule.forRoot(process.env.CONEXION_DB), ...features],
+   controllers: [RootController],
 })
 export class AppModule {}

@@ -19,9 +19,17 @@ export class UserBody {
 }
 
 export class UserResponse {
-   id_: string;
+   user_id: string;
    email: string;
-   role: string;
+   role_name: string;
+
+   static from(params: UserResponse) {
+      const user_response = new UserResponse();
+      user_response.email = params.email;
+      user_response.user_id = params.user_id;
+      user_response.role_name = params.role_name;
+      return user_response;
+   }
 }
 
 export class UsersResponse {
